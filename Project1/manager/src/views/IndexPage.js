@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { Form, Icon, Input, Button, Checkbox ,message,notification} from 'antd';
-
-import styles from './index.scss';
-
+import indexantd from "antd/dist/antd.css";
+import styles from './IndexPage.scss';
+import feach from '../utils/request'
 class IndexPage extends Component {
   constructor(props){
     super(props)
@@ -12,34 +12,58 @@ class IndexPage extends Component {
       arr:{}
     }
   }
-  
+
   handleSubmit = e => {
     e.preventDefault();
     let {history:{push}} = this.props
-    let {login,user:{detail}} = this.props
+    
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log(values)
-        async function arr(){
-            return await login({
-                "user_name":values.username,
-                "user_pwd":values.password
-            })
-        }
-        arr()
-        console.log(this.props)
-        // push('/homeIndex')
+        
+        feach("http://localhost:7001/user/login",{
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            "user_name":values.username,
+            "user_pwd":values.password
+          })
+        }).then(res => {
+          console.log(push)
+          push("/homeIndex")
+          if(res.code !==1 && !res.err === ""){
+            message.error('登录错误',1);
+          }else if(res.code*1===1){
+            console.log(res)
+          }
+
+          if(res.err){
+            let err = res.err
+            notification.open({
+              message: 'Notification Title',
+              description:JSON.stringify(err),
+              icon: <Icon type="smile" style={{ color: '#108ee9' }} />,
+            });
+          }
+        })
+      }else{
+        return 
       }
     });
   };
+  btn=()=>{
+    console.log()
+  }
+
 
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
       <div className={styles.box}>
         <div className={styles.login}>
-          <div className={styles.logins}> 
-            <Form onSubmit={this.handleSubmit} className="login-form">
+          <div className={styles.logins}>
+            <Form className={indexantd} onSubmit={this.handleSubmit}>
               <Form.Item>
                 {getFieldDecorator('username', {
                   rules: [{ required: true, message: '请输入你的用户名!' }],
@@ -52,7 +76,7 @@ class IndexPage extends Component {
               </Form.Item>
               <Form.Item>
                 {getFieldDecorator('password', {
-                  rules: [{pattern: /^(?:(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[^A-Za-z0-9])).*$/, message: '密码校验失败!密码包含大小写字母、数字、特殊符号'}],
+                  rules: [{ required: true, message: '密码校验失败!密码包含大小写字母、数字、特殊符号' }],
                 })(
                   <Input
                     prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -66,10 +90,10 @@ class IndexPage extends Component {
                   valuePropName: 'checked',
                   initialValue: false,
                 })(<Checkbox className={styles.pwd}>记住密码</Checkbox>)}
-                <a className={styles.pwds} href="">
+                <a className="login-form-forgot" className={styles.pwds} href="">
                   忘记密码
                 </a>
-                <Button type="primary" htmlType="submit" className={styles.btn}>
+                <Button type="primary" htmlType="submit" className={styles.btn} onClick={this.btn.bind(this)}>
                   登录
                 </Button>
               </Form.Item>
@@ -82,20 +106,5 @@ class IndexPage extends Component {
 }
 
 IndexPage.propTypes = {};
-const mapStateToProps = state=>{
-    console.log('state...', state);
-    return state
-  }
-  
-  const mapDisaptchToProps = dispatch=>{
-    return {
-      login(payload){
-        dispatch({
-            type: 'user/login',
-            payload
-        })
-      }
-    }
-  }
 
-export default connect(mapStateToProps,mapDisaptchToProps)(Form.create({})(IndexPage));
+export default connect()(Form.create({})(IndexPage));
