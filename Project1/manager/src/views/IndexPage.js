@@ -52,7 +52,7 @@ function IndexPage(props){
                 <Input
                   prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   type="password"
-                  placeholder="请输入密码"
+                  placeholder="请输入您的密码"
                 />,
               )}
             </Form.Item>
