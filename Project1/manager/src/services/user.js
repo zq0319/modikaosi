@@ -5,5 +5,10 @@ export function login(params) {
     url:"/user/login",
     method:"POST",
     data:params
+  },
+  {
+    url:"/user/userInfo",
+    method:"GET",
+    data:params
   });
 }
