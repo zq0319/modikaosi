@@ -16,6 +16,7 @@ function IndexPage(props){
       // 3.跳转主页面
       console.log('props.history', props.history);
       let pathName = decodeURIComponent(props.history.location.search.split('=')[1]);
+      console.log(pathName)
       props.history.replace(pathName);
     }else if(props.detail === -1){
       // 登陆失败

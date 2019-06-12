@@ -42,4 +42,29 @@
     line-height: 20px;
     font-size: 16px;
   }
+  .el_conent .ant-input-affix-wrapper{
+    width: 530px;
+  }
+  .for-container{
+    height: 300px !important;
+  }
+  .for-editor-content .for-container textarea {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding: 8px 0;
+    font-family: inherit;
+    display: block;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    resize: none;
+    border: none;
+    outline: none;
+    font-size: inherit;
+    color: rgba(0, 0, 0, 0.65);
+    background: none;
+    line-height: inherit;
+    font-size: 16px;
+}
 }

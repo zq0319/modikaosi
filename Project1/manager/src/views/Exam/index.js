@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import './index.scss';
-import ExamPle from '@/components/Example';
+import Example from '@/components/Example';
 import { Layout, Dropdown, Menu, message } from 'antd';
 import { Route, Switch } from 'dva/router';
 import Addeaxm from "./Questions/Addexam"
 import Typeexam from "./Questions/Typeexam"
 import Viewexam from "./Questions/Viewexam"
+
 const { Header, Sider, Content } = Layout;
+
 
 function SiderDemo(props) {
 
@@ -38,17 +40,18 @@ function SiderDemo(props) {
                 </div>
                 <Dropdown overlay={menu}>
                     <span style={{ height: '100%', width: "150px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="https://cdn.nlark.com/yuque/0/2019/png/anonymous/1547609339813-e4e49227-157c-452d-be7e-408ca8654ffe.png?x-oss-process=image/resize,m_fill,w_48,h_48/format,png" style={{ width: '40px', height: '40px', verticalAlign: 'middel', borderRadius: '50%', margin: '0 10px' }} alt="" />渲染值</span>
-                </Dropdown></Header>
+                </Dropdown>
+            </Header>
             <Layout>
                 <Sider>
-                    <ExamPle />
+                    <Example />
                 </Sider>
                 <Content>
                     <Switch>
-                    <Route path="/questions/add" component={Addeaxm}></Route>
-                    <Route path="/questions/type" component={Typeexam}></Route>
-                    <Route path="/questions/view" component={Viewexam}></Route>
-                </Switch>
+                        <Route path="/questions/add" component={Addeaxm}></Route>
+                        <Route path="/questions/type" component={Typeexam}></Route>
+                        <Route path="/questions/view" component={Viewexam}></Route>
+                    </Switch>
                 </Content>
             </Layout>
         </Layout>
