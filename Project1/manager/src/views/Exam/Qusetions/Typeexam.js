@@ -1,45 +1,20 @@
 import React, { Component } from 'react';
 import { Modal, Button, Input, Table } from 'antd';
+import { connect } from 'dva';
 const columns = [
     {
-        title: 'Name',
-        dataIndex: 'name',
+        title: '类型ID',
+        dataIndex: 'questions_type_id',
         render: text => <a href="javascript:;">{text}</a>,
     },
     {
-        title: 'Age',
-        dataIndex: 'age',
+        title: '类型名称',
+        dataIndex: 'questions_type_text',
     },
     {
-        title: 'Address',
-        dataIndex: 'address',
-    },
-];
-const data = [
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-    },
-    {
-        key: '4',
-        name: 'Disabled User',
-        age: 99,
-        address: 'Sidney No. 1 Lake Park',
-    },
+        title: '操作',
+        dataIndex: 'questions_type_sort',
+    }
 ];
 const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
@@ -53,7 +28,6 @@ const rowSelection = {
 class Typeexam extends Component {
 
     state = { visible: false };
-
     showModal = () => {
         this.setState({
             visible: true,
@@ -61,24 +35,25 @@ class Typeexam extends Component {
     };
 
     handleOk = e => {
-        console.log(e);
         this.setState({
             visible: false,
         });
     };
 
     handleCancel = e => {
-        console.log(e);
         this.setState({
             visible: false,
         });
     };
 
+    componentDidMount() {
+        this.props.type()
+    }
     render() {
         return (
-            <div>
+            <div className="content">
                 <h2>考试分类</h2>
-                <div>
+                <div className="el_conent">
                     <Button type="primary" onClick={this.showModal}>
                         + 添加类型
                     </Button>
@@ -89,11 +64,38 @@ class Typeexam extends Component {
                         onCancel={this.handleCancel}>
                         <Input placeholder="请输入类型名称"></Input>
                     </Modal>
-                    <Table rowSelection={rowSelection} columns={columns} dataSource={data} />,
+                    <Table rowSelection={rowSelection} columns={columns} dataSource={this.props.exo.data}/>
                 </div>
             </div>
         );
     }
 }
 
-export default Typeexam;
+
+// props的类型检查
+Typeexam.propTypes = {
+
+}
+// props的默认值
+Typeexam.defaultProps = {
+
+}
+
+const mapStateToProps = state => {
+    console.log('state...', state);
+    return {
+        ...state.user
+    }
+}
+
+const mapDisaptchToProps = dispatch => {
+    return {
+        type() {
+            dispatch({
+                type: 'user/type'
+            })
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDisaptchToProps)(Typeexam)

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, Menu, Icon,Dropdown,Avatar,Slider } from 'antd';
-import {Route, Switch} from 'dva/router';
+import {Route, Switch,Redirect} from 'dva/router';
 import style from "./index.scss"
 import Example from "../../components/Example"
 import Addexam from "./Qusetions/Addexam"
@@ -52,9 +52,10 @@ function mapStateToProps(state) {
               <Layout style={{ padding: '0 24px 24px' }}>
                   <Content>
                     <Switch>
-                        <Route path="/questions/add" component={Addexam}></Route>
-                        <Route path="/questions/type" component={Typeexam}></Route>
-                        <Route path="/questions/view" component={Viewexam}></Route>
+                      <Redirect exact from="/" to="/questions/add"/>
+                        <Route path="/questions/add" component={Addexam}/>
+                        <Route path="/questions/type" component={Typeexam}/>
+                        <Route path="/questions/view" component={Viewexam}/>
                     </Switch>
                   </Content>
               </Layout>

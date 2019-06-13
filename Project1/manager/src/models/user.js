@@ -1,13 +1,13 @@
-import { login } from '@/services'
+import { login, type,view} from '@/services'
 import { setToken, getToken } from "@/utils/user"
 import { routerRedux } from 'dva/router';
 export default {
   // 命名空间
   namespace: 'user',
-
   // 模块内部的状态
   state: {
-    isLogin: 0
+    isLogin: 0,
+    exo:[]
   },
   //订阅路由跳转
   subscriptions: {
@@ -19,7 +19,8 @@ export default {
           if (!getToken()) {
             //利用redux做路由跳转
             dispatch(routerRedux.replace({
-              pathname: `/login?redirect=${encodeURIComponent(pathname)}`,
+              pathname: `/login`,
+              search:`?redirect=${encodeURIComponent(pathname)}`
             }))
           }
         } else {
@@ -48,13 +49,35 @@ export default {
         type: 'updateLogin',
         payload: data.code === 1 ? 1 : -1
       })
-    }//写这个
+    },
+    *type({payload},{ call, put }) {
+      let exo = yield call(type)
+      yield put({
+        type:"exo",
+        payload:exo
+      })
+      console.log('exo...',exo)
+    },
+    *view({payload},{ call, put }) {
+      let vie = yield call(view)
+      yield put({
+        type:"view",
+        payload:vie
+      })
+      console.log('view...',vie)
+    }
   },
 
   // 同步操作
   reducers: {
     updateLogin(state, { payload }) {
       return { ...state, isLogin: payload }
+    },
+    exo(state,{payload}){
+      return { ...state, exo: payload }
+    },
+    view(state,{payload}){
+      return { ...state, view: payload }
     }
   },
 
