@@ -64,7 +64,7 @@ class Typeexam extends Component {
                         onCancel={this.handleCancel}>
                         <Input placeholder="请输入类型名称"></Input>
                     </Modal>
-                    <Table rowSelection={rowSelection} columns={columns} dataSource={this.props.exo.data}/>
+                    <Table rowSelection={rowSelection} columns={columns} dataSource={this.props.exo.data} />
                 </div>
             </div>
         );
