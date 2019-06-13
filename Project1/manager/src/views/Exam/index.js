@@ -13,7 +13,7 @@ const { Header, Sider, Content } = Layout;
 function SiderDemo(props) {
 
     useEffect(() => {
-        console.log(1111, props)
+      
     }, [props])
 
     let onClick = ({ key }) => {
