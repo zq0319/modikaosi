@@ -1,4 +1,4 @@
-import {examType,subject,getQuestionsType} from '../services/index'
+import {examType,subject,getQuestionsType,questions} from '../services/index'
 console.log(examType)
 export default {
     // 命名空间
@@ -21,10 +21,12 @@ export default {
             let exam_type = yield call(examType);
             let data = yield call(subject);
             let data1 = yield call(getQuestionsType);
-            console.log(exam_type.data,data,data1)
+            let data2 = yield call(questions);
+
             yield put({type:'save',payload:exam_type.data})
             yield put({type:'subject',payload:data.data})
             yield put({type:'getQuestionsType',payload:data1.data})
+            yield put({type:'questions',payload:data2.data})
         }
     },
 
@@ -46,6 +48,12 @@ export default {
             return {
                 ...state,
                 getQuestionsType: action.payload,
+            };
+        },
+        questions(state,action){
+            return {
+                ...state,
+                questions: action.payload,
             };
         }
     },

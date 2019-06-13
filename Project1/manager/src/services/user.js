@@ -9,6 +9,7 @@ export function login(params){
   })
 }
 
+
 export function type() {
   return request({
     url:"/exam/getQuestionsType",
@@ -39,4 +40,15 @@ export function getQuestionsType(){
     method: 'GET',
   })
 }
+
+
+//获取所有的试题
+export function questions(){
+  return request({
+    url: '/exam/questions/new',
+    method: 'GET',
+  })
+}
+
+
 

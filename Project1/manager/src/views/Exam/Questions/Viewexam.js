@@ -6,18 +6,14 @@ const { Option } = Select;
 
  class Viewexam extends Component {
     state={
-        detail:[],
-        subject:[],
-        getQuestionsType:[],
+        
     }
     componentDidMount(){
         this.props.examType()
     }
-    componentWillReceiveProps(newProps){
-        console.log(newProps)
-    }
+    
     render() {
-        let {subject,detail,getQuestionsType} = this.props
+        let {subject,detail,getQuestionsType,questions} = this.props
         return (
             <div className="content">
                 <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>查看试题</h2>
@@ -33,13 +29,18 @@ const { Option } = Select;
                             }
                         </Radio.Group>
                         <div className="el-Button">
-                        <Select defaultValue='周考二' style={{ width: 120 }} onChange={this.select1.bind(this)}>
-                            {
-                            detail && detail.map((el,i)=>{
-                                return <Option key={i} value={el.exam_name}>{el.exam_name}</Option>
-                            })
-                            }
-                        </Select> 
+                        <div>
+                            <span>考试类型：</span>
+                            <Select defaultValue='周考二' style={{ width: 120 }} onChange={this.select1.bind(this)}>
+                                {
+                                detail && detail.map((el,i)=>{
+                                    return <Option key={i} value={el.exam_name}>{el.exam_name}</Option>
+                                })
+                                }
+                            </Select> 
+                        </div>
+                        <div>
+                        <span>题目类型：</span>
                             <Select defaultValue='' style={{ width: 120 }} onChange={this.select1.bind(this)}>
                             {
                             getQuestionsType && getQuestionsType.map((el,i)=>{
@@ -47,12 +48,18 @@ const { Option } = Select;
                             })
                             }
                         </Select>
+                        </div>
                         <Button type="primary" icon="search">搜索</Button>  
                         </div>
                     </div>
                 </div>
                 <div className="el_conent">
-                    <ViewComponent/>
+                    {
+                        questions && questions.map((el,i)=>{
+                            return <ViewComponent data={el} key={i}/>
+                        })
+                    }
+                    
                 </div>
             </div>
         )

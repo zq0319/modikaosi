@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import './index.scss';
 import Example from '@/components/Example';
-import { Layout, Dropdown, Menu, message } from 'antd';
+import { Layout, Dropdown, Menu ,Modal} from 'antd';
 import { Route, Switch } from 'dva/router';
 import Addeaxm from "./Questions/Addexam"
 import Typeexam from "./Questions/Typeexam"
 import Viewexam from "./Questions/Viewexam"
-
+import {removeToken} from '@/utils/user'
 const { Header, Sider, Content } = Layout;
-
+const confirm = Modal.confirm;
 
 function SiderDemo(props) {
 
@@ -18,7 +18,18 @@ function SiderDemo(props) {
 
     let onClick = ({ key }) => {
         if(key*1 === 4){
-            message.info(`Click on item ${key}`);
+            let {history:{push}} = props
+            confirm({
+                title: '你确定要退出当前的账号吗?',
+                onOk() {
+                    removeToken()
+                    push('/login')
+                },
+                onCancel() {
+                  console.log('Cancel');
+                },
+            });
+            
         }
         
     };
