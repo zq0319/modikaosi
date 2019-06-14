@@ -24,7 +24,7 @@ const { Option } = Select;
                         <Radio.Button value="all">all</Radio.Button>
                             {
                                 subject && subject.map((el,i)=>{
-                                    return <Radio.Button key={i} value={el.subject_text}>{el.subject_text}</Radio.Button>
+                                    return <Radio.Button key={i} value={el.subject_id}>{el.subject_text}</Radio.Button>
                                 })
                             }
                         </Radio.Group>
@@ -34,7 +34,7 @@ const { Option } = Select;
                             <Select defaultValue='周考二' style={{ width: 120 }} onChange={this.select1.bind(this)}>
                                 {
                                 detail && detail.map((el,i)=>{
-                                    return <Option key={i} value={el.exam_name}>{el.exam_name}</Option>
+                                    return <Option key={i} value={el.exam_id}>{el.exam_name}</Option>
                                 })
                                 }
                             </Select> 
@@ -44,7 +44,7 @@ const { Option } = Select;
                             <Select defaultValue='' style={{ width: 120 }} onChange={this.select1.bind(this)}>
                             {
                             getQuestionsType && getQuestionsType.map((el,i)=>{
-                                return <Option key={i} value={el.questions_type_text}>{el.questions_type_text}</Option>
+                                return <Option key={i} value={el.questions_type_id}>{el.questions_type_text}</Option>
                             })
                             }
                         </Select>
@@ -59,7 +59,6 @@ const { Option } = Select;
                             return <ViewComponent data={el} key={i}/>
                         })
                     }
-                    
                 </div>
             </div>
         )

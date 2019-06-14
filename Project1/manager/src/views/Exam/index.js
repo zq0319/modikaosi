@@ -3,9 +3,9 @@ import './index.scss';
 import Example from '@/components/Example';
 import { Layout, Dropdown, Menu ,Modal} from 'antd';
 import { Route, Switch } from 'dva/router';
-import Addeaxm from "./Questions/Addexam"
-import Typeexam from "./Questions/Typeexam"
-import Viewexam from "./Questions/Viewexam"
+import Addeaxm from "./Questions/addExam"
+import Typeexam from "./Questions/typeExam"
+import Viewexam from "./Questions/viewExam"
 import {removeToken} from '@/utils/user'
 const { Header, Sider, Content } = Layout;
 const confirm = Modal.confirm;

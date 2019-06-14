@@ -50,5 +50,12 @@ export function questions(){
   })
 }
 
+//添加试题类型
+export function insertQuestionsType(params){
+  return request({
+    url: `/exam/insertQuestionsType?text=${params.text}&sort=${params.sort}`,
+    method: 'GET'
+  })
+}
 
 

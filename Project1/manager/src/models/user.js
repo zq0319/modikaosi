@@ -1,4 +1,4 @@
-import { login,type} from '../services/index'
+import { login,type,insertQuestionsType} from '../services/index'
 import {setToken, getToken} from '@/utils/user'
 import { routerRedux } from 'dva/router';
 export default {
@@ -52,13 +52,19 @@ export default {
         },
         *type({payload},{ call, put }) {
           let exo = yield call(type)
-          console.log(exo)
+          if(payload !== undefined){
+            var data = yield call(insertQuestionsType,payload)
+            yield put({
+              type:"insertType",
+              payload:{...data}
+            })
+          }
+          
           yield put({
             type:"exo",
             payload:exo
           })
         },
-    
     },
 
     // 同步操作
@@ -72,6 +78,9 @@ export default {
         exo(state,{payload}){
           return { ...state, exo: payload }
         },
+        insertType(state,action){
+          return { ...state, addCode: action.payload }
+        }
     },
 
 };

@@ -26,7 +26,7 @@ class Addexam extends Component {
     }
     render() {
         let { value, value1, detail, subject, getQuestionsType } = this.state
-        console.log(value)
+        
         return (
             <div className="content">
                 <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>添加试题</h2>
