@@ -1,3 +1,10 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  line-height: 0;
+}
+
+
 :global {
   .ant-layout-header {
     width: 100%;
@@ -78,27 +85,13 @@
     color: rgba(0, 0, 0, 0.65);
     box-sizing: border-box;
     list-style: none;
-}
+  }
   .ant-list-item-content {
     display: flex;
     flex: 1;
   }
-}
-.header{
-    width: 100%;
-    height: 80px;
-    display: flex; 
-}
-.left{
-    width: 80%;
-    height: 100%;
-    img{
-        width: 200px;
-        height: 60px;
-        margin-top: 20px;
-    }
-}
-.right{
-    width: 20%;
-    height: 100%;
+  .ant-radio-button-wrapper-checked{
+    background: blue;
+    color: #fff;
+  }
 }
