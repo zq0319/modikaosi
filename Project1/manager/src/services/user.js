@@ -58,4 +58,28 @@ export function insertQuestionsType(params){
   })
 }
 
+//添加试题类型
+export function condition(){
+  return request({
+    url: `/exam/questions/condition`,
+    method: 'GET'
+  })
+}
+//添加试题接口
+export function questionsAdd(params){
+  return request({
+    url: `/exam/questions`,
+    method: 'POST',
+    data:params
+  })
+}
+
+//更新试题
+export function update(params){
+  return request({
+    url: `/exam/questions/update`,
+    method: 'POST',
+    data:params
+  })
+}
 

@@ -53,21 +53,19 @@ class Typeexam extends Component {
             text:this.state.value,
             sort:arr.length+1
         })
-
+        message.info('数据插入成功');
         this.setState({
             visible: false,
         });
     };
 
     componentWillReceiveProps(newProps){
-        console.log(newProps)
         this.setState({
             arr:newProps.exo.data
         })
         
         if(newProps.addCode){
-            if(newProps.addCode.code*1===1*1){
-                message.info(newProps.addCode.msg+'成功');
+            if(newProps.addCode.code*1===1*1 && newProps.addCode){
                 this.setState({
                     value:''
                 })
@@ -112,7 +110,6 @@ Typeexam.defaultProps = {
 }
 
 const mapStateToProps = state => {
-    console.log('state...', state);
     return {
         ...state.user
     }

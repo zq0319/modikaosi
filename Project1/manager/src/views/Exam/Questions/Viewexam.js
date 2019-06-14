@@ -6,21 +6,25 @@ const { Option } = Select;
 
  class Viewexam extends Component {
     state={
-        
+        select1:'',
+        select2:'',
+        change:'',
+        questions:[]
     }
     componentDidMount(){
         this.props.examType()
     }
     
     render() {
-        let {subject,detail,getQuestionsType,questions} = this.props
+        let {subject,detail,getQuestionsType} = this.props
+        let {questions} = this.state;
         return (
             <div className="content">
                 <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>查看试题</h2>
                 <div className="el_conent">
                     <div>
                         <span>课程类型：</span>
-                        <Radio.Group defaultValue="a" buttonStyle="solid">
+                        <Radio.Group defaultValue="a" onChange={this.change.bind(this)}>
                         <Radio.Button value="all">all</Radio.Button>
                             {
                                 subject && subject.map((el,i)=>{
@@ -41,7 +45,7 @@ const { Option } = Select;
                         </div>
                         <div>
                         <span>题目类型：</span>
-                            <Select defaultValue='' style={{ width: 120 }} onChange={this.select1.bind(this)}>
+                            <Select defaultValue='' style={{ width: 120 }} onChange={this.select2.bind(this)}>
                             {
                             getQuestionsType && getQuestionsType.map((el,i)=>{
                                 return <Option key={i} value={el.questions_type_id}>{el.questions_type_text}</Option>
@@ -49,23 +53,55 @@ const { Option } = Select;
                             }
                         </Select>
                         </div>
-                        <Button type="primary" icon="search">搜索</Button>  
+                        <Button type="primary" icon="search" onClick={this.btn.bind(this)}>搜索</Button>  
                         </div>
                     </div>
                 </div>
                 <div className="el_conent">
-                    {
-                        questions && questions.map((el,i)=>{
-                            return <ViewComponent data={el} key={i}/>
-                        })
-                    }
+                    <ViewComponent data={questions} fn={()=>{
+                        this.props.history.push("/questions/detail")
+                    }} fn1={()=>{
+                        this.props.history.push("/questions/add")
+                    }}/>
                 </div>
             </div>
         )
     }
     
     select1=(value)=>{
-        console.log(`selected ${value}`);
+        this.setState({
+            select1:value
+        })
+    }
+
+    select2=(value)=>{
+        this.setState({
+            select2:value
+        })
+    }
+    change=(e)=>{
+        this.setState({
+            change:e.target.value
+        })
+    }
+    btn=()=>{
+        let {select1,select2,change} = this.state
+        console.log(select1,select2,change)
+        this.props.examType(`?questinos_id=${''}&questions_type_id=${change}&subject_id=${select1}&exam_id=${select2}`)
+        console.log(this.props)
+    }
+    detailpush=()=>{
+        console.log(111)
+    }
+    componentWillReceiveProps(newProps){
+        this.setState({
+            questions:newProps.questions
+        })
+        if(newProps.condition){
+            this.setState({
+                questions:newProps.condition.splice(Math.floor(Math.random()*3),Math.floor(Math.random()*10))
+            })
+        }
     }
 }
 const mapStateToProps = state => {
@@ -74,9 +110,10 @@ const mapStateToProps = state => {
   
 const mapDisaptchToProps = dispatch => {
     return {
-    examType() {
+    examType(payload) {
         dispatch({
           type: 'add/examTypes',
+          payload
         })
       }
     }

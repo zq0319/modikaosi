@@ -6,6 +6,7 @@ import { Route, Switch } from 'dva/router';
 import Addeaxm from "./Questions/addExam"
 import Typeexam from "./Questions/typeExam"
 import Viewexam from "./Questions/viewExam"
+import Detailexam from "./Questions/detailExam"
 import {removeToken} from '@/utils/user'
 const { Header, Sider, Content } = Layout;
 const confirm = Modal.confirm;
@@ -62,6 +63,7 @@ function SiderDemo(props) {
                         <Route path="/questions/add" component={Addeaxm}></Route>
                         <Route path="/questions/type" component={Typeexam}></Route>
                         <Route path="/questions/view" component={Viewexam}></Route>
+                        <Route path="/questions/detail" component={Detailexam}></Route>
                     </Switch>
                 </Content>
             </Layout>
