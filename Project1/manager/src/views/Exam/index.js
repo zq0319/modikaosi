@@ -19,7 +19,7 @@ function SiderDemo(props) {
 
     let onClick = ({ key }) => {
         if (key * 1 === 4) {
-            let { history: { push } } = props
+            let { history : { push } } = props
             confirm({
                 title: '你确定要退出当前的账号吗?',
                 onOk() {
