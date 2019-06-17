@@ -83,3 +83,52 @@ export function update(params){
   })
 }
 
+//展示用户数据
+export function userView(){
+  return request({
+    url: `/user/user`,
+    method: 'GET'
+  })
+}
+
+
+//展示身份数据
+export function identity(){
+  return request({
+    url: `/user/identity`,
+    method: 'GET'
+  })
+}
+
+
+//展示api权限接口
+export function api_authority(){
+  return request({
+    url: `/user/api_authority`,
+    method: 'GET'
+  })
+}
+
+//展示身份和api权限关系
+export function identity_api_authority_relation(){
+  return request({
+    url: `/user/identity_api_authority_relation`,
+    method: 'GET'
+  })
+}
+
+//获取视图权限数据
+export function view_authority(){
+  return request({
+    url: `/user/view_authority`,
+    method: 'GET'
+  })
+}
+
+//展示身份和视图权限关系
+export function authority_relation(){
+  return request({
+    url: `/user/identity_view_authority_relation`,
+    method: 'GET'
+  })
+}

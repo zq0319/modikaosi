@@ -7,6 +7,10 @@ import Addeaxm from "./Questions/addExam"
 import Typeexam from "./Questions/typeExam"
 import Viewexam from "./Questions/viewExam"
 import Detailexam from "./Questions/detailExam"
+import Adduser from './Usermanagement/addUser'
+import Viewuser from './Usermanagement/viewUser'
+import Addexams from './Exammanagement/addExams'
+import Examlist from './Exammanagement/examList'
 import {removeToken} from '@/utils/user'
 const { Header, Sider, Content } = Layout;
 const confirm = Modal.confirm;
@@ -64,6 +68,10 @@ function SiderDemo(props) {
                         <Route path="/questions/type" component={Typeexam}></Route>
                         <Route path="/questions/view" component={Viewexam}></Route>
                         <Route path="/questions/detail" component={Detailexam}></Route>
+                        <Route path="/questions/adduser" component={Adduser}></Route>
+                        <Route path="/questions/viewuser" component={Viewuser}></Route>
+                        <Route path="/questions/addexams" component={Addexams}></Route>
+                        <Route path="/questions/examlist" component={Examlist}></Route>
                     </Switch>
                 </Content>
             </Layout>

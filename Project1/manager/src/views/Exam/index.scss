@@ -91,7 +91,43 @@
     flex: 1;
   }
   .ant-radio-button-wrapper-checked{
-    background: blue;
-    color: #fff;
+    border: 1px solid #1890ff
+  }
+  .content-flex{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    >div{
+      width: 33%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      height: 300px;
+    }
+  }
+  .ant-tabs-tabpane-active>h1{
+    font-size: 30px;
+    padding: 5px 0;
+  }
+  .contnet-el li>a{
+    line-height: 24px;
+  }
+  .ant-pagination-item>a,.ant-pagination-item-link{
+    line-height: 30px;
+  }
+  .ant-table-row{
+    height: 50px;
+  }
+  .contnet-el thead th{
+    height: 50px;
+  }
+  #register_email{
+    width: 400px;
+  }
+  .ant-calendar-range-picker-separator{
+    line-height: 24px;
+  }
+  .ant-form-item-control{
+    width: 150px;
   }
 }

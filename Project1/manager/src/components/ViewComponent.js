@@ -34,12 +34,12 @@ export default class componentName extends Component {
     btn=(e)=>{
         let localstorage = window.localStorage
         localstorage.arr = JSON.stringify(e)
-        this.props.fn()
+        this.props.fn(`${e.questions_id}`)
     }
 
     push=(e)=>{
         let localstorage = window.localStorage
         localstorage.str = JSON.stringify(e)
-        this.props.fn1()
+        this.props.fn1(`${e.questions_id}`)
     }
 }

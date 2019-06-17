@@ -51,7 +51,6 @@ class Addexam extends Component {
                     <p>题目信息</p>
                     <p>题干</p>
                     <Input size="large" placeholder="请输入题目标题，不超过20个字" value={value1} allowClear onChange={(e) => {
-                        console.log(e.target.value)
                         this.setState({
                             value1: e.target.value
                         })
@@ -144,6 +143,8 @@ class Addexam extends Component {
                     title:value
                 })
                 if(window.localStorage.getItem("str")){
+                    let {history:{push}} = that.props;
+                    push("/questions/view")
                     message.info("更新成功");
                 }else{
                     message.info("插入成功");

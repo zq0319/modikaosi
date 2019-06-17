@@ -43,8 +43,8 @@ export default class Example extends Component {
                 </span>
               }
             >
-              <Menu.Item key="4">添加用户</Menu.Item>
-              <Menu.Item key="5">用户展示</Menu.Item>
+              <Menu.Item key="4"><Link to="/questions/adduser">添加用户</Link></Menu.Item>
+              <Menu.Item key="5"><Link to="/questions/viewuser">用户展示</Link></Menu.Item>
             </SubMenu>
             <SubMenu
               key="sub3"
@@ -55,8 +55,8 @@ export default class Example extends Component {
                 </span>
               }
             >
-              <Menu.Item key="7">添加考试</Menu.Item>
-              <Menu.Item key="8">试卷列表</Menu.Item>
+              <Menu.Item key="7"><Link to="/questions/addexams">添加考试</Link></Menu.Item>
+              <Menu.Item key="8"><Link to="/questions/examlist">添加用户</Link></Menu.Item>
             </SubMenu>
             <SubMenu
               key="sub4"
