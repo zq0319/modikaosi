@@ -43,7 +43,7 @@ export default class Example extends Component {
                 </span>
               }
             >
-              <Menu.Item key="4">添加用户</Menu.Item>
+              <Menu.Item key="4"><Link to="/questions/addUser">添加用户</Link></Menu.Item>
               <Menu.Item key="5">用户展示</Menu.Item>
             </SubMenu>
             <SubMenu
