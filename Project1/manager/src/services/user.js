@@ -132,3 +132,68 @@ export function authority_relation(){
     method: 'GET'
   })
 }
+//添加用户
+export function adduser(params){
+  return request({
+    url: `/user`,
+    method: 'POST',
+    data:params
+  })
+}
+
+//展示身份
+export function identityato(params){
+  return request({
+    url: `/user/identity`,
+    method: 'GET',
+    data:params
+  })
+}
+
+//添加身份
+export function edit(params){
+  return request({
+    url: `/user/identity/edit?identity_text=${params.text}`,
+    method: 'GET'
+  })
+}
+//添加身份
+// export function authorityApi(params){
+//   return request({
+//     url: `/user/authorityApi/edit?api_authority_text=${params.api_authority_text}&api_authority_url=${params.api_authority_url}&api_authority_mehtod${params.api_authority_mehtod}`,
+//     method: 'GET'
+//   })
+// }
+
+//添加试题容器接口
+export function usernew(params){
+  return request({
+    url: `/user/identity_api_authority_relation`,
+    method: 'GET'
+  })
+}
+
+//添加视图权限
+export function authority(params){
+  return request({
+    url: `/user/view_authority`,
+    method: 'GET'
+  })
+}
+
+//创建试卷接口
+export function examfnDate(params){
+  return request({
+    url: `/exam/exam`,
+    method: 'POST',
+    data:params
+  })
+}
+
+//创建试卷接口
+export function examStudentList(params){
+  return request({
+    url: `/exam/exam`,
+    method: 'GET'
+  })
+}

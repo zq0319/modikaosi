@@ -1,4 +1,4 @@
-import {examType,subject,getQuestionsType,questions,condition,questionsAdd,update} from '../services/index'
+import {examType,subject,getQuestionsType,questions,condition,questionsAdd,update,examfnDate,examStudentList} from '../services/index'
 console.log(examType)
 export default {
     // 命名空间
@@ -35,11 +35,19 @@ export default {
                     console.log(data5)
                     yield put({type:'questionsAdd',payload:data4})
                 }
+                if(payload.subject_id){
+                    let date = yield call(examfnDate,payload);
+                    console.log(date)
+                }
+                
             }
+            let studentList = yield call(examStudentList,payload);
+                console.log(studentList)
             yield put({type:'save',payload:exam_type.data})
             yield put({type:'subject',payload:data.data})
             yield put({type:'getQuestionsType',payload:data1.data})
             yield put({type:'questions',payload:data2.data})
+            yield put({type:'studentList',payload:studentList.exam})
         }
     },
 
@@ -80,7 +88,13 @@ export default {
                 ...state,
                 questionsAdd: action.payload,
             };
-        }
+        },
+        studentList(state,action){
+            return {
+                ...state,
+                studentList: action.payload,
+            };
+        },
     },
 
 };

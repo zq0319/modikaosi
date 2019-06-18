@@ -1,5 +1,5 @@
 
-import {userView,identity,api_authority,identity_api_authority_relation,view_authority,authority_relation} from '../services/index'
+import {userView,identity,api_authority,identity_api_authority_relation,view_authority,authority_relation,identityato,adduser,edit,usernew,authority} from '../services/index'
 export default {
     // 命名空间
     namespace: 'view',
@@ -26,11 +26,28 @@ export default {
             let data5 = yield call(authority_relation)
 
             yield put({type:'userViews',play:data.data})
-            yield put({type:'identity',play:data1.data})
+            yield put({type:'identitys',play:data1.data})
             yield put({type:'api_authority',play:data2.data})
             yield put({type:'identity_api_authority_relation',play:data3.data})
             yield put({type:'view_authority',play:data4.data})
             yield put({type:'authority_relation',play:data5.data})
+        },
+         *examTypes({ payload }, { call, put }) {
+            let addusr = yield call(adduser, payload)
+            yield put({ type: 'addusr', payload: addusr.data })
+            let identit = yield call(identityato)
+            yield put({ type: 'identity', payload: identit.data })
+            if (payload) {
+                let edi = yield call (edit,payload)
+                yield put ({type:'edit',payload:edi})
+            }
+            // let authority = yield call(authorityApi,payload)
+            // console.log(authority)
+            // yield put({ type: 'authority', payload: authority.data })
+            let userne = yield call(usernew,payload)
+            yield put({ type: 'usernew', payload: userne.data })
+            let author = yield call(authority,payload)
+            yield put({ type: 'authority', payload: author.data })
         }
     },
 
@@ -42,7 +59,7 @@ export default {
           userList:action.play
         }
       },
-      identity(state,action){
+      identitys(state,action){
         return {
           ...state,
           identityList:action.play
@@ -72,6 +89,43 @@ export default {
           authorityList:action.play
         }
       },
-    },
-
+      adduser(state, action) {
+            return {
+                ...state,
+                adduser: action.payload,
+            };
+        },
+        identity(state, action) {
+            
+            return {
+                ...state,
+                identity: action.payload,
+            };
+        },
+        edit(state, action) {
+            
+            return {
+                ...state,
+                edit: action.payload,
+            };
+        },
+        // authorityApi(state, action) {
+        //     return {
+        //         ...state,
+        //         authorityApi: action.payload,
+        //     };
+        // },
+        usernew(state, action) {
+            return {
+                ...state,
+                usernew: action.payload,
+            };
+        },
+        authority(state, action) {
+            return {
+                ...state,
+                authority: action.payload,
+            };
+        }
+      },
 };
