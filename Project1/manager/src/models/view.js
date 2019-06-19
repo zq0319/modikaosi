@@ -1,5 +1,5 @@
 
-import {userView,identity,api_authority,identity_api_authority_relation,view_authority,authority_relation,identityato,adduser,edit,usernew,authority} from '../services/index'
+import {userView,identity,api_authority,identity_api_authority_relation,view_authority,authority_relation,identityato,adduser,edit,usernew,authority,examtrench} from '../services/index'
 export default {
     // 命名空间
     namespace: 'view',
@@ -48,6 +48,11 @@ export default {
             yield put({ type: 'usernew', payload: userne.data })
             let author = yield call(authority,payload)
             yield put({ type: 'authority', payload: author.data })
+        },
+        *detail({ payload }, { call, put }){
+          let userne = yield call(examtrench,payload)
+          console.log(userne)
+          yield put({ type: 'userneList', payload: userne.data })
         }
     },
 
@@ -126,6 +131,12 @@ export default {
                 ...state,
                 authority: action.payload,
             };
+        },
+        userneList(state,action){
+            return {
+              ...state,
+              authority: action.payload.questions,
+          };
         }
       },
 };

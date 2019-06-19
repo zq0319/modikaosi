@@ -197,3 +197,36 @@ export function examStudentList(params){
     method: 'GET'
   })
 }
+
+//获取试卷详情（教师端）接口
+export function examtrench(params){
+  return request({
+    url: `/exam/exam/${params}`,
+    method: 'GET'
+  })
+}
+
+
+//获取学生试卷列表接口
+export function studentList(params){
+  return request({
+    url: `/manger/grade`,
+    method: 'GET'
+  })
+}
+
+//获取学生试卷列表接口
+export function student(params){
+  return request({
+    url: `/exam/student?grade_id=${params}`,
+    method: 'GET'
+  })
+}
+
+//获取学生试卷列表接口
+export function studentdetail(params){
+  return request({
+    url: `/exam/student/${params}`,
+    method: 'GET'
+  })
+}

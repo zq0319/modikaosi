@@ -22,21 +22,24 @@ class addUser extends Component {
       seletValue: ''
     };
     componentDidMount(){
-      console.log(this.props)
       this.props.examType()
     }
 
     componentWillReceiveProps(newProps){
       console.log(newProps)
-      
-      this.setState({
+      this.setState({ 
         select:newProps.detail,
         select1:newProps.subject
       })
+      if(newProps.arr){
+        // console.log(newProps.arr)
+        window.localStorage.all = JSON.stringify(newProps.arr.data)
+        newProps.history.push("/questions/addevent")
+      }
     }
     render() {
         let {getFieldDecorator} = this.props.form
-        let {number,select,select1,value} = this.state
+        let {number,select,select1} = this.state
         return (
             <div className="content">
                 <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>添加考试</h2>
@@ -114,23 +117,20 @@ class addUser extends Component {
     handleSubmit=(e)=>{
       e.preventDefault();
       this.props.form.validateFields((err, values) => {
-        // console.log(Number(values['range-time-picker'][0]['_d']))
         if(values.name && values.genders && values.gender){
             this.props.examType({
                 subject_id:values.genders,
                 exam_id:values.gender,
-                tite:values.name,
+                title:values.name,
                 number:values.inputnum,
                 start_time:Number(values['range-time-picker'][0]['_d']),
                 end_time:Number(values['range-time-picker'][1]['_d'])
             })
         }
-        console.log('Received values of form: ', values);
       });
     }
     
     handleNumberChange=value=>{
-      console.log(value)
       this.setState({
         number: {
           value,

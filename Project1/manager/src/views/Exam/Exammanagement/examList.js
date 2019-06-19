@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Select,Table,Tabs} from 'antd';
+import { Button, Select,Tabs} from 'antd';
 import { connect } from 'dva';
 const { TabPane } = Tabs;
 const { Option } = Select;
@@ -72,9 +72,9 @@ class addUser extends Component {
                             {
                                 examList && examList.map((el,i)=>{
                                     return <li key={i}><ol><li>{el.title}</li>
-                                    <li><p>考试班级</p>{el.grade_name.map((item,index)=>{
+                                    <li><div>考试班级</div><div >{el.grade_name.map((item,index)=>{
                                         return <span key={index}>{item}</span>
-                                    })}</li>
+                                    })}</div></li>
                                     <li>{el.user_name}</li>
                                     <li>{el.start_time}</li>
                                     <li>{el.end_time}</li>
@@ -89,6 +89,8 @@ class addUser extends Component {
     }
     topstype=(e)=>{
         console.log(e)
+        let {history:{push}} = this.props
+        push(`/questions/viewDetail?id=${e}`)
     }
 }
 const mapStateToProps = state => {

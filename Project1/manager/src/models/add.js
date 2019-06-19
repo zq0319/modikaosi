@@ -37,7 +37,7 @@ export default {
                 }
                 if(payload.subject_id){
                     let date = yield call(examfnDate,payload);
-                    console.log(date)
+                    yield put({type:'examfnDate',payload:date})
                 }
                 
             }
@@ -93,6 +93,12 @@ export default {
             return {
                 ...state,
                 studentList: action.payload,
+            };
+        },
+        examfnDate(state,action){
+            return {
+                ...state,
+                arr: action.payload,
             };
         },
     },

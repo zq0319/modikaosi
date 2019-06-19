@@ -79,7 +79,7 @@ export default class Example extends Component {
                 </span>
               }
             >
-              <Menu.Item key="12">待批班级</Menu.Item>
+              <Menu.Item key="12"><Link to="/questions/classroom">待批管理</Link></Menu.Item>
             </SubMenu>
           </Menu>
         </Sider>
