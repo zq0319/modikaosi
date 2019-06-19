@@ -17,9 +17,22 @@ class Addexam extends Component {
         detail: [],
         subject: [],
         getQuestionsType: [],
+        str:{},
     }
     componentDidMount() {
         this.props.examType();
+        let str = window.localStorage.getItem("str")
+        let stry = JSON.parse(str)
+        if(str){
+            this.setState({
+                value: stry.questions_stem,
+                value1: stry.title,
+                value2: stry.questions_answer,
+                select1:stry.exam_name,
+                select2:stry.subject_text,
+                select3:stry.questions_type_text,
+            })
+        }
     }
     componentWillReceiveProps (newProps) {
         this.setState({
@@ -29,16 +42,15 @@ class Addexam extends Component {
         })
     }
     render() {
-        let { value, value1, detail, subject, getQuestionsType,value2} = this.state
+        let { value, value1, detail, subject, getQuestionsType,value2,str} = this.state
         
         return (
             <div className="content">
-                <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>添加试题</h2>
+                <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>{str.questions_stem?'编辑试题':'添加试题'}</h2>
                 <div className="el_conent">
                     <p>题目信息</p>
                     <p>题干</p>
                     <Input size="large" placeholder="请输入题目标题，不超过20个字" value={value1} allowClear onChange={(e) => {
-                        console.log(e.target.value)
                         this.setState({
                             value1: e.target.value
                         })
@@ -130,10 +142,17 @@ class Addexam extends Component {
                     questions_answer:value2,
                     title:value
                 })
-                message.info("插入成功");
+                if(window.localStorage.getItem("str")){
+                    let {history:{push}} = that.props;
+                    push("/questions/view")
+                    message.info("更新成功");
+                }else{
+                    message.info("插入成功");
+                }
+                window.localStorage.clear();
             },
             onCancel() {
-                console.log('Cancel');
+                // console.log('Cancel');
             },
         });
     }

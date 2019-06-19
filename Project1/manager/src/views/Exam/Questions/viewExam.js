@@ -58,8 +58,10 @@ const { Option } = Select;
                     </div>
                 </div>
                 <div className="el_conent">
-                    <ViewComponent data={questions} fn={()=>{
-                        this.props.history.push("/questions/detail")
+                    <ViewComponent data={questions} fn={(e)=>{
+                        this.props.history.push(`/questions/detail?id=${e}`)
+                    }} fn1={(e)=>{
+                        this.props.history.push(`/questions/add?id=${e}`)
                     }}/>
                 </div>
             </div>
@@ -84,12 +86,9 @@ const { Option } = Select;
     }
     btn=()=>{
         let {select1,select2,change} = this.state
-        console.log(select1,select2,change)
         this.props.examType(`?questinos_id=${''}&questions_type_id=${change}&subject_id=${select1}&exam_id=${select2}`)
-        console.log(this.props)
     }
     detailpush=()=>{
-        console.log(111)
     }
     componentWillReceiveProps(newProps){
         this.setState({
