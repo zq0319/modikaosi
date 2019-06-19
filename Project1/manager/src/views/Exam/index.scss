@@ -3,7 +3,9 @@
   margin: 0px;
   line-height: normal ;
 }
-
+button{
+  width: 100%;
+}
 
 :global {
   .ant-layout-header {
@@ -196,5 +198,14 @@
   }
   .ulsList .uls ol:hover{
     background: #e6efff !important;
+  }
+  .ant-modal-confirm-btns button{
+    width: 46%;
+    margin: 0;
+  }
+  .routerA a{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
   }
 }

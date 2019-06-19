@@ -86,12 +86,9 @@ const { Option } = Select;
     }
     btn=()=>{
         let {select1,select2,change} = this.state
-        console.log(select1,select2,change)
         this.props.examType(`?questinos_id=${''}&questions_type_id=${change}&subject_id=${select1}&exam_id=${select2}`)
-        console.log(this.props)
     }
     detailpush=()=>{
-        console.log(111)
     }
     componentWillReceiveProps(newProps){
         this.setState({

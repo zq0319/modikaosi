@@ -16,7 +16,6 @@ class addUser extends Component {
         this.props.examType()
     }
     componentWillReceiveProps(newProps){
-        console.log(newProps)
         let {detail,subject,studentList} = newProps
         this.setState({
             detail,
@@ -75,7 +74,7 @@ class addUser extends Component {
                                     <li><div>考试班级</div><div >{el.grade_name.map((item,index)=>{
                                         return <span key={index}>{item}</span>
                                     })}</div></li>
-                                    <li>{el.user_name}</li>
+                                    <li>{new Date(el.user_name).toLocaleString()}</li>
                                     <li>{el.start_time}</li>
                                     <li>{el.end_time}</li>
                                     <li><a href="javascript:;" onClick={this.topstype.bind(this,el.exam_exam_id)}>详情</a></li></ol></li>
@@ -88,7 +87,6 @@ class addUser extends Component {
         );
     }
     topstype=(e)=>{
-        console.log(e)
         let {history:{push}} = this.props
         push(`/questions/viewDetail?id=${e}`)
     }

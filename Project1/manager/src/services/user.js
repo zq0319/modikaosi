@@ -198,6 +198,16 @@ export function examStudentList(params){
   })
 }
 
+//更新试卷接口
+export function putexam(params){
+  return request({
+    url: `/exam/exam/${params.str}`,
+    method: 'PUT',
+    data:{
+      question_ids:params.question_ids
+    }
+  })
+}
 //获取试卷详情（教师端）接口
 export function examtrench(params){
   return request({
@@ -228,5 +238,77 @@ export function studentdetail(params){
   return request({
     url: `/exam/student/${params}`,
     method: 'GET'
+  })
+}
+
+//添加教室
+export function addroom(params){
+  return request({
+    url: `/manger/room`,
+    method: 'POST',
+    data:params
+  })
+}
+
+//添加班级
+export function addgrade(params){
+  return request({
+    url: `/manger/grade`,
+    method: 'POST',
+    data:params
+  })
+}
+
+//获取全部教室
+export function room(params){
+  return request({
+    url: `/manger/room`,
+    method: 'GET'
+  })
+}
+
+//获取全部班级
+export function grade(params){
+  return request({
+    url: `/manger/grade`,
+    method: 'GET'
+  })
+}
+
+//获取全部学生
+export function studentarr(params){
+  return request({
+    url: `/manger/student`,
+    method: 'GET'
+  })
+}
+
+//删除教室接口
+export function roomdelete(params){
+  return request({
+    url: `/manger/room/delete`,
+    method: 'DELETE',
+    data:{
+      room_id:params
+    }
+  })
+}
+
+//删除班级接口
+export function gradedelete(params){
+  return request({
+    url: `/manger/grade/delete`,
+    method: 'DELETE',
+    data:{
+      grade_id:params
+    }
+  })
+}
+
+//删除学生接口
+export function studentdelete(params){
+  return request({
+    url: `/manger/student/${params}`,
+    method: 'DELETE'
   })
 }

@@ -26,7 +26,6 @@ class viewDetail extends Component {
         this.props.examType(str)
     }
     componentWillReceiveProps(newProps){
-        console.log(newProps)
         this.setState({
             stanList:newProps.authority
         })

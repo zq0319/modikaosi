@@ -42,7 +42,6 @@ export default {
                 yield put ({type:'edit',payload:edi})
             }
             // let authority = yield call(authorityApi,payload)
-            // console.log(authority)
             // yield put({ type: 'authority', payload: authority.data })
             let userne = yield call(usernew,payload)
             yield put({ type: 'usernew', payload: userne.data })
@@ -51,7 +50,6 @@ export default {
         },
         *detail({ payload }, { call, put }){
           let userne = yield call(examtrench,payload)
-          console.log(userne)
           yield put({ type: 'userneList', payload: userne.data })
         }
     },

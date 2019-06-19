@@ -85,17 +85,14 @@ class componentName extends Component {
   }
 
   callback=(key)=> {
-    console.log(key);
     this.setState({
       index:key-1
     })
   }
   componentDidMount(){
-    console.log(this.props)
     this.props.userView()
   }
   componentWillReceiveProps(newProps){
-    console.log(newProps)
     let {userList,identityList,api_authorityList,identity_apiList,view_authorityList,authorityList} = newProps
     this.setState({
       userList,

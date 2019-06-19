@@ -23,7 +23,6 @@ export default {
 
         if(payload){
             let data1 = yield call(studentdetail,payload)
-            console.log(data1)
         }
       },
     },

@@ -1,4 +1,4 @@
-import {examType,subject,getQuestionsType,questions,condition,questionsAdd,update,examfnDate,examStudentList} from '../services/index'
+import {examType,subject,getQuestionsType,questions,condition,questionsAdd,update,examfnDate,examStudentList,putexam} from '../services/index'
 console.log(examType)
 export default {
     // 命名空间
@@ -48,6 +48,11 @@ export default {
             yield put({type:'getQuestionsType',payload:data1.data})
             yield put({type:'questions',payload:data2.data})
             yield put({type:'studentList',payload:studentList.exam})
+        },
+        *putarr({payload}, { call, put}){
+            let data = yield call(putexam,payload);
+            console.log(data)
+            yield put({type:'putexam',payload:data.code})
         }
     },
 
@@ -101,6 +106,12 @@ export default {
                 arr: action.payload,
             };
         },
+        putexam(state,action){
+            return {
+                ...state,
+                isexam: action.payload,
+            };
+        }
     },
 
 };

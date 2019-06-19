@@ -26,13 +26,11 @@ class addUser extends Component {
     }
 
     componentWillReceiveProps(newProps){
-      console.log(newProps)
       this.setState({ 
         select:newProps.detail,
         select1:newProps.subject
       })
       if(newProps.arr){
-        // console.log(newProps.arr)
         window.localStorage.all = JSON.stringify(newProps.arr.data)
         newProps.history.push("/questions/addevent")
       }

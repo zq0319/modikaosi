@@ -32,11 +32,9 @@ class addUser extends Component {
         this.setState({ mode });
     };
     componentDidMount() {
-        console.log(this.props)
         this.props.adduser();
     }
     componentWillReceiveProps(newProps) {
-        console.log(newProps)
         this.setState({
             data: newProps.identity,
             arr: newProps.usernew,
@@ -45,7 +43,6 @@ class addUser extends Component {
     }
     render() {
         let { name, pwd, names, pwds, data, Identity, arr,list } = this.state
-        console.log(data)
         return (
             <div className="box">
                 <h2>添加用户</h2>
@@ -54,13 +51,11 @@ class addUser extends Component {
                         <Tabs>
                             <TabPane tab="添加用户" key="1" className="tabpane">
                                 <Input className="input" placeholder="请输入用户名" value={name} onChange={(e) => {
-                                    console.log(e.target.value)
                                     this.setState({
                                         name: e.target.value
                                     })
                                 }}></Input>
                                 <Input className="input" placeholder="请输入密码" value={pwd} onChange={(e) => {
-                                    console.log(e.target.value)
                                     this.setState({
                                         pwd: e.target.value
                                     })
@@ -81,13 +76,11 @@ class addUser extends Component {
                                     <Option value="lucy">Lucy (101)</Option>
                                 </Select>
                                 <Input className="input" placeholder="请输入用户名" value={names} onChange={(e) => {
-                                    console.log(e.target.value)
                                     this.setState({
                                         names: e.target.value
                                     })
                                 }}></Input>
                                 <Input className="input" placeholder="请输入密码" value={pwds} onChange={(e) => {
-                                    console.log(e.target.value)
                                     this.setState({
                                         pws: e.target.value
                                     })
@@ -107,7 +100,6 @@ class addUser extends Component {
                     <div className="list_box">
                         <h1>添加身份</h1>
                         <Input className="input" placeholder="请您添加身份" value={Identity} onChange={(e) => {
-                            console.log(e.target.value)
                             this.setState({
                                 Identity: e.target.value
                             })
@@ -120,19 +112,16 @@ class addUser extends Component {
                     <div className="list_box">
                         <h1>添加api身份权限</h1>
                         <Input className="input" placeholder="请输入api接口权限名称" onChange={(e) => {
-                            console.log(e.target.value)
                             this.setState({
                                 apiname: e.target.value
                             })
                         }}></Input>
                         <Input className="input" placeholder="请输入api接口权限url" onChange={(e) => {
-                            console.log(e.target.value)
                             this.setState({
                                 apiurl: e.target.value
                             })
                         }}></Input>
                         <Input className="input" placeholder="请输入api接口权限方法" onChange={(e) => {
-                            console.log(e.target.value)
                             this.setState({
                                 apifangfa: e.target.value
                             })
@@ -208,19 +197,19 @@ class addUser extends Component {
         })
     }
     handleChange2 = (value) => {
-        console.log(value);
+        
     }
     handleChange3 = (value) => {
-        console.log(value);
+        
     }
     handleChange4 = (value) => {
-        console.log(value);
+        
     }
     handleChange5 = (value) => {
-        console.log(value);
+        
     }
     handleChange6 = (value) => {
-        console.log(value);
+        
     }
     handleChange7 = (value) => {
         this.setState({
@@ -228,7 +217,7 @@ class addUser extends Component {
         })
     }
     handleChange8 = (value) => {
-        console.log(value);
+        
     }
     btn = () => {
         let { name, pwd, select1 } = this.state;

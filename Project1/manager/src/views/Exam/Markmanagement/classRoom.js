@@ -36,7 +36,6 @@ class viewDetail extends Component {
                   title: '操作',
                   key: 'action',
                   render: (text, record) => {
-                    //   console.log(text,record)
                       function arr(e,i){
                         let {history:{push}} =props
                         push(`/questions/marklist?id=${e}&room=${i}`)
@@ -67,7 +66,6 @@ class viewDetail extends Component {
         this.props.examType()
     }
     componentWillReceiveProps(newProps){
-        console.log(newProps)
         this.setState({
             stanList:newProps.stanList
         })

@@ -124,7 +124,7 @@ class Addexam extends Component {
     }
     
     btn = () => {
-        let {value,value1,value2,select1,select2,select3} = this.state;
+        // let {value,value1,value2,select1,select2,select3} = this.state;
         var that = this
         confirm({
             title: '你确定要添加这道试题吗?',
@@ -133,15 +133,15 @@ class Addexam extends Component {
             okType: 'danger',
             cancelText: '取消',
             onOk() {
-                that.props.examType({
-                    questions_type_id:select3,
-                    questions_stem:value1,
-                    subject_id:select2,
-                    exam_id:select1,
-                    user_id:'w6l6n-cbvl6s',
-                    questions_answer:value2,
-                    title:value
-                })
+                // that.props.examType({
+                //     questions_type_id:select3,
+                //     questions_stem:value1,
+                //     subject_id:select2,
+                //     exam_id:select1,
+                //     user_id:'w6l6n-cbvl6s',
+                //     questions_answer:value2,
+                //     title:value
+                // })
                 if(window.localStorage.getItem("str")){
                     let {history:{push}} = that.props;
                     push("/questions/view")
@@ -152,7 +152,7 @@ class Addexam extends Component {
                 window.localStorage.clear();
             },
             onCancel() {
-                console.log('Cancel');
+                // console.log('Cancel');
             },
         });
     }
