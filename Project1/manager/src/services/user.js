@@ -9,6 +9,19 @@ export function login(params){
   })
 }
 
+// 获取用户信息
+export function getUserInfo(){
+  return request({
+    url: '/user/userInfo'
+  })
+}
+
+// 获取用户权限
+export function getViewAuthority(user_id){
+  return request({
+    url: '/user/new?user_id='+user_id
+  })
+}
 
 export function type() {
   return request({
@@ -158,12 +171,18 @@ export function edit(params){
   })
 }
 //添加身份
-// export function authorityApi(params){
-//   return request({
-//     url: `/user/authorityApi/edit?api_authority_text=${params.api_authority_text}&api_authority_url=${params.api_authority_url}&api_authority_mehtod${params.api_authority_mehtod}`,
-//     method: 'GET'
-//   })
-// }
+export function authorityApi(params){
+  console.log(params)
+  return request({
+    params:{
+      api_authority_text:params.api_authority_text,
+      api_authority_url : params.api_authority_url,
+      api_authority_method : params.api_authority_method
+    },
+    url: '/user/authorityApi/edit',
+    method: 'GET'
+  })
+}
 
 //添加试题容器接口
 export function usernew(params){

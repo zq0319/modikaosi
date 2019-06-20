@@ -32,8 +32,6 @@ class classManagement extends Component {
                             <a href="javascript:;" onClick={()=>{
                                 btn(text.room_id)
                             }}>删除 {record.name}</a>
-                            <Divider type="vertical" />
-                            <a href="javascript:;">修改</a>
                         </span>
                     }
                 },

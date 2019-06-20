@@ -238,14 +238,15 @@ class addUser extends Component {
         message.info("插入成功");
     }
     btn2 = () => {
-        //     let { apiname, apiurl, apifangfa } = this.state;
-        //     var that = this
-        //     that.props.adduser({
-        //         api_authority_text: apiname,
-        //         api_authority_url: apiurl,
-        //         api_authority_mehtod: apifangfa
-        //     })
-        //     message.info("插入成功");
+            let { apiname, apiurl, apifangfa } = this.state;
+            var that = this
+            that.props.adduser({
+                api_authority_text: apiname,
+                api_authority_url: apiurl,
+                api_authority_method: apifangfa
+            })
+            console.log(apiname, apiurl, apifangfa)
+            message.info("插入成功");
     }
 }
 
@@ -258,6 +259,7 @@ const mapStateToProps = state => {
 const mapDisaptchToProps = dispatch => {
     return {
         adduser(payload) {
+            console.log(payload)
             dispatch({
                 type: 'view/examTypes',
                 payload

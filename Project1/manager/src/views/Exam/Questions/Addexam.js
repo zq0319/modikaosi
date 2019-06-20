@@ -35,6 +35,7 @@ class Addexam extends Component {
         }
     }
     componentWillReceiveProps (newProps) {
+        console.log(newProps)
         this.setState({
             detail: newProps.detail,
             subject: newProps.subject,

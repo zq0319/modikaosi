@@ -74,7 +74,7 @@ class addUser extends Component {
                                     <li><div>考试班级</div><div >{el.grade_name.map((item,index)=>{
                                         return <span key={index}>{item}</span>
                                     })}</div></li>
-                                    <li>{new Date(el.user_name).toLocaleString()}</li>
+                                    <li>{el.user_name}</li>
                                     <li>{el.start_time}</li>
                                     <li>{el.end_time}</li>
                                     <li><a href="javascript:;" onClick={this.topstype.bind(this,el.exam_exam_id)}>详情</a></li></ol></li>

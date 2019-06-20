@@ -22,9 +22,6 @@ class viewDetail extends Component {
     }
     componentWillReceiveProps(newProps){
         
-        this.setState({
-            
-        })
     }
 }
 const mapStateToProps = state => {

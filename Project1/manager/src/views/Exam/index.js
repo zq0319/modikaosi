@@ -1,35 +1,42 @@
+/* eslint-disable array-callback-return */
 import React, { useEffect } from 'react';
 import './index.scss';
 import Example from '@/components/Example';
 import { Layout, Dropdown, Menu ,Modal} from 'antd';
 import {connect} from 'dva';
-import { Route, Switch } from 'dva/router';
+import { Route, Switch , Redirect} from 'dva/router';
 import Addeaxm from "./Questions/addExam"
-import Typeexam from "./Questions/typeExam"
-import Viewexam from "./Questions/viewExam"
+// import Typeexam from "./Questions/typeExam"
+// import Viewexam from "./Questions/viewExam"
 import Detailexam from "./Questions/detailExam"
-import Adduser from './Usermanagement/addUser'
-import Viewuser from './Usermanagement/viewUser'
-import Addexams from './Exammanagement/addExams'
-import Addevent from './Exammanagement/addEvent'
-import Examlist from './Exammanagement/examList'
-import Viewdetail from './Exammanagement/viewDetail'
-import Classroom from './Markmanagement/classRoom'
 import Marklist from './Markmanagement/markList'
 import Detailclass from './Markmanagement/detailClass'
-import Class from "./manageMent/classManagement"
-import Classrooms from "./manageMent/classroomManagement"
-import Student from "./manageMent/studentManagement"
+import Addevent from './Exammanagement/addEvent'
+import Three from './Other/403'
+import Four from './Other/404'
+// import Adduser from './Usermanagement/addUser'
+// import Viewuser from './Usermanagement/viewUser'
+// import Addexams from './Exammanagement/addExams'
+// import Examlist from './Exammanagement/examList'
+// import Viewdetail from './Exammanagement/viewDetail'
+
+// import Classroom from './Markmanagement/classRoom'
+
+// import Class from "./manageMent/classManagement"
+// import Classrooms from "./manageMent/classroomManagement"
+// import Student from "./manageMent/studentManagement"
 import {removeToken} from '@/utils/user'
 const { Header, Sider, Content } = Layout;
 const confirm = Modal.confirm;
 
 function SiderDemo(props) {
-
+    console.log('index props...', props)
     useEffect(() => {
       
     }, [props])
-
+    if (!props.myView.length){
+        return null;
+    }
     let onClick = ({ key }) => {
         if(key*1 === 4){
             let {history:{push}} = props
@@ -96,22 +103,42 @@ function SiderDemo(props) {
                 </Sider>
                 <Content>
                     <Switch>
-                        <Route path="/questions/add" component={Addeaxm}></Route>
+                        {/* <Route path="/questions/add" component={Addeaxm}></Route>
                         <Route path="/questions/type" component={Typeexam}></Route>
-                        <Route path="/questions/view" component={Viewexam}></Route>
+                        <Route path="/questions/view" component={Viewexam}></Route> */}
                         <Route path="/questions/detail" component={Detailexam}></Route>
-                        <Route path="/questions/adduser" component={Adduser}></Route>
-                        <Route path="/questions/viewuser" component={Viewuser}></Route>
-                        <Route path="/questions/addexams" component={Addexams}></Route>
-                        <Route path="/questions/addevent" component={Addevent}></Route>
-                        <Route path="/questions/examlist" component={Examlist}></Route>
-                        <Route path="/questions/viewDetail" component={Viewdetail}></Route>
-                        <Route path="/questions/classroom" component={Classroom}></Route>
-                        <Route path="/questions/marklist" component={Marklist}></Route>
                         <Route path="/questions/detailclass" component={Detailclass}></Route>
-                        <Route path="/questions/classManagement" component={Class}></Route>
-                        <Route path="/questions/classroomManagement" component={Classrooms}></Route>
-                        <Route path="/questions/studentManagement" component={Student}></Route>
+                        <Route path="/questions/addevent" component={Addevent}></Route>
+                        <Route path="/questions/marklist" component={Marklist}></Route>
+                        <Route path="/403" component={Three}></Route>
+                        <Route path="/404" component={Four}></Route>
+                        {/* <Route path="/questions/adduser" component={Adduser}></Route> */}
+                        {/* <Route path="/questions/viewuser" component={Viewuser}></Route> */}
+                        {/* <Route path="/questions/addexams" component={Addexams}></Route> */}
+                        {/* <Route path="/questions/examlist" component={Examlist}></Route> */}
+
+                        {/* <Route path="/questions/viewDetail" component={Viewdetail}></Route> */}
+                        {/* <Route path="/questions/classroom" component={Classroom}></Route> */}
+                        {/* <Route path="/questions/classManagement" component={Class}></Route> */}
+                        {/* <Route path="/questions/classroomManagement" component={Classrooms}></Route> */}
+                        {/* <Route path="/questions/studentManagement" component={Student}></Route> */}
+                        {/* <Redirect exact from="/" to="/questions/add"/> */}
+                            {/* 渲染该用户拥有的路由 */}
+                            {props.myView.map((item)=>{
+                                console.log(item)
+                                if (item.children){
+                                    return item.children.map((value,key)=>{
+                                        return  <Route key={key} path={value.path} component={value.component}/>
+                                        })
+                                    }
+                                })
+                            }
+                            {/* 403路由 */}
+                            {props.forbiddenView.map((item)=>{
+                                return <Redirect key={item} from={item} to="/403"/>
+                            })}
+                            {/* 剩余路由去404 */}
+                            {/* <Redirect to="/404"/> */}
                     </Switch>
                 </Content>
             </Layout>
@@ -119,9 +146,10 @@ function SiderDemo(props) {
     </div>
 }
 const mapStateToProps = state=>{
-    console.log('state..', state);
     return {
-      locale: state.global.locale
+      locale: state.global.locale,
+      myView: state.user.myView,
+      forbiddenView: state.user.forbiddenView
     }
   }
   

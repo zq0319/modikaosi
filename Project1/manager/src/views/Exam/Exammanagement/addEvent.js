@@ -39,6 +39,7 @@ class addUser extends Component {
                         closable={false}
                         onClose={this.onClose}
                         visible={this.state.visible}
+                        width={1500}
                         >
                         <Arrrs />
                     </Drawer>
@@ -56,7 +57,7 @@ class addUser extends Component {
                             </div>
                         })
                     }
-                    <p style={{textAlign:'center'}}><Button type="primary" onClick={this.btnsarr}><Icon type="plus" />Open</Button></p>
+                    <p style={{textAlign:'center'}}><Button type="primary" onClick={this.btnsarr}><Icon type="plus" />创建试卷</Button></p>
                 </div>
                 
             </div>

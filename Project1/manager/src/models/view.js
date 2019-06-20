@@ -1,5 +1,5 @@
 
-import {userView,identity,api_authority,identity_api_authority_relation,view_authority,authority_relation,identityato,adduser,edit,usernew,authority,examtrench} from '../services/index'
+import {userView,identity,api_authority,identity_api_authority_relation,view_authority,authority_relation,identityato,adduser,edit,usernew,authority,examtrench,authorityApi} from '../services/index'
 export default {
     // 命名空间
     namespace: 'view',
@@ -41,8 +41,11 @@ export default {
                 let edi = yield call (edit,payload)
                 yield put ({type:'edit',payload:edi})
             }
-            // let authority = yield call(authorityApi,payload)
-            // yield put({ type: 'authority', payload: authority.data })
+            if(payload){
+              let authority = yield call(authorityApi,payload)
+              console.log(payload)
+              yield put({ type: 'authorityApi', payload: authority.data })
+            }
             let userne = yield call(usernew,payload)
             yield put({ type: 'usernew', payload: userne.data })
             let author = yield call(authority,payload)
@@ -112,12 +115,12 @@ export default {
                 edit: action.payload,
             };
         },
-        // authorityApi(state, action) {
-        //     return {
-        //         ...state,
-        //         authorityApi: action.payload,
-        //     };
-        // },
+        authorityApi(state, action) {
+            return {
+                ...state,
+                authorityApi: action.payload,
+            };
+        },
         usernew(state, action) {
             return {
                 ...state,
