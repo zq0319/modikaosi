@@ -44,7 +44,7 @@ export default {
             if(payload){
               let authority = yield call(authorityApi,payload)
               console.log(payload)
-              yield put({ type: 'authority', payload: authority.data })
+              yield put({ type: 'authorityApi', payload: authority.data })
             }
             let userne = yield call(usernew,payload)
             yield put({ type: 'usernew', payload: userne.data })

@@ -19,7 +19,7 @@ class addUser extends Component {
         apifangfa: '',
         data: [],
         arr: [],
-        list:[]
+        list: []
     }
     constructor(props) {
         super(props);
@@ -35,14 +35,16 @@ class addUser extends Component {
         this.props.adduser();
     }
     componentWillReceiveProps(newProps) {
+        console.log(newProps)
         this.setState({
             data: newProps.identity,
             arr: newProps.usernew,
-            list:newProps.authority
+            list: newProps.authority,
+            namess: newProps.userList
         })
     }
     render() {
-        let { name, pwd, names, pwds, data, Identity, arr,list } = this.state
+        let { name, pwd, names, pwds, data, Identity, arr, list, namess } = this.state
         return (
             <div className="box">
                 <h2>添加用户</h2>
@@ -72,8 +74,11 @@ class addUser extends Component {
                             </TabPane>
                             <TabPane tab="更新用户" key="2" className="tabpane">
                                 <Select className="select" labelInValue defaultValue={{ key: '选择身份ID' }} style={{ width: 120 }} onChange={this.handleChange2.bind(this)}>
-                                    <Option value="jack">Jack (100)</Option>
-                                    <Option value="lucy">Lucy (101)</Option>
+                                    {
+                                        namess && namess.map((el, i) => {
+                                            return <Option key={i} value={el.user_id}>{el.user_name}</Option>
+                                        })
+                                    }
                                 </Select>
                                 <Input className="input" placeholder="请输入用户名" value={names} onChange={(e) => {
                                     this.setState({
@@ -86,8 +91,11 @@ class addUser extends Component {
                                     })
                                 }}></Input>
                                 <Select className="select" labelInValue defaultValue={{ key: '选择身份ID' }} style={{ width: 120 }} onChange={this.handleChange3.bind(this)}>
-                                    <Option value="jack">Jack (100)</Option>
-                                    <Option value="lucy">Lucy (101)</Option>
+                                    {
+                                        data && data.map((el, i) => {
+                                            return <Option key={i} value={el.identity_id}>{el.identity_text}</Option>
+                                        })
+                                    }
                                 </Select>
                                 <Button type="primary">添加</Button>
                                 <Button>重置</Button>
@@ -197,19 +205,19 @@ class addUser extends Component {
         })
     }
     handleChange2 = (value) => {
-        
+
     }
     handleChange3 = (value) => {
-        
+
     }
     handleChange4 = (value) => {
-        
+
     }
     handleChange5 = (value) => {
-        
+
     }
     handleChange6 = (value) => {
-        
+
     }
     handleChange7 = (value) => {
         this.setState({
@@ -217,7 +225,7 @@ class addUser extends Component {
         })
     }
     handleChange8 = (value) => {
-        
+
     }
     btn = () => {
         let { name, pwd, select1 } = this.state;
@@ -238,15 +246,15 @@ class addUser extends Component {
         message.info("插入成功");
     }
     btn2 = () => {
-            let { apiname, apiurl, apifangfa } = this.state;
-            var that = this
-            that.props.adduser({
-                api_authority_text: apiname,
-                api_authority_url: apiurl,
-                api_authority_method: apifangfa
-            })
-            console.log(apiname, apiurl, apifangfa)
-            message.info("插入成功");
+        let { apiname, apiurl, apifangfa } = this.state;
+        var that = this
+        that.props.adduser({
+            api_authority_text: apiname,
+            api_authority_url: apiurl,
+            api_authority_method: apifangfa
+        })
+        console.log(apiname, apiurl, apifangfa)
+        message.info("插入成功");
     }
 }
 

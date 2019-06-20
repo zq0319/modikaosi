@@ -81,7 +81,7 @@ class studentManagement extends Component {
         let { data, arr, list ,columns} = this.state
         return (
             <div>
-                <h2>学生管理</h2>
+                <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>学生管理</h2>
                 <div className="nav">
                     <Input placeholder="输入学生姓名"></Input>
                     <Select labelInValue defaultValue={{ key: '请选择教室号' }} style={{ width: 120 }} onChange={handleChange} className="select">
@@ -101,7 +101,9 @@ class studentManagement extends Component {
                     <Button type="primary">搜索</Button>
                     <Button type="primary">重置</Button>
                 </div>
-                <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+                <div className="el_conent">
+                    <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+                </div>
             </div>
         );
     }

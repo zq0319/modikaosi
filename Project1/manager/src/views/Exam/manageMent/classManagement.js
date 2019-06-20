@@ -32,8 +32,6 @@ class classManagement extends Component {
                             <a href="javascript:;" onClick={()=>{
                                 btn(text.room_id)
                             }}>删除 {record.name}</a>
-                            <Divider type="vertical" />
-                            <a href="javascript:;">修改</a>
                         </span>
                     }
                 },
@@ -88,7 +86,7 @@ class classManagement extends Component {
         let {arr,columns,name,data,list,select1,select2} = this.state
         return (
             <div className="arrrrr">
-                <h2>班级管理</h2>
+               <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>班级管理</h2>
                 <div>
                     <Button type="primary" onClick={this.showModal}>
                         + 添加班级
@@ -99,8 +97,7 @@ class classManagement extends Component {
                         onOk={this.handleOk}
                         okText="确认"
                         cancelText="取消"
-                        onCancel={this.handleCancel}
-                    >
+                        onCancel={this.handleCancel}>
                         <p>班级名</p>
                         <Input placeholder="请输入班级名"  value={name} onChange={(e) => {
                                     this.setState({
@@ -112,8 +109,7 @@ class classManagement extends Component {
                             labelInValue
                             defaultValue={{ key: '请渲染教室号' }}
                             style={{ width: 120 }}
-                            onChange={this.handleChange1.bind(this)}
-                        >
+                            onChange={this.handleChange1.bind(this)}>
                             {
                                 arr && arr.map((el, i) => {
                                     return <Option key={i} value={el.room_id}>{el.room_text}</Option>
@@ -125,8 +121,7 @@ class classManagement extends Component {
                             labelInValue
                             defaultValue={{ key: '请输入课程名' }}
                             style={{ width: 120 }}
-                            onChange={this.handleChange2.bind(this)}
-                        >
+                            onChange={this.handleChange2.bind(this)}>
                             {
                                 list && list.map((item, i) => {
                                     return <Option key={i} value={item.subject_id}>{item.subject_text}</Option>
@@ -135,7 +130,9 @@ class classManagement extends Component {
                         </Select>
                     </Modal>
                 </div>
-                <Table columns={columns} dataSource={data} />
+                <div className="el_conent">
+                    <Table columns={columns} dataSource={data} />
+                </div>
             </div>
         );
     }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { Button , Drawer,Icon} from 'antd';
+import Arrrs from '../Questions/viewExam'
 class addUser extends Component {
     
     state = {
@@ -38,10 +39,9 @@ class addUser extends Component {
                         closable={false}
                         onClose={this.onClose}
                         visible={this.state.visible}
+                        width={1500}
                         >
-                        <p>Some contents...</p>
-                        <p>Some contents...</p>
-                        <p>Some contents...</p>
+                        <Arrrs />
                     </Drawer>
                     <div style={{width:'100%',textAlign:'center'}}>
                         <div>

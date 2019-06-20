@@ -203,4 +203,9 @@ button{
     width: 46%;
     margin: 0;
   }
+  .routerA a{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+  }
 }

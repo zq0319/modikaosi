@@ -30,7 +30,6 @@ class classroomManagement extends Component {
                             <a href="javascript:;" onClick={() => {
                                 btn(text.room_id)
                             }}>删除 {record.name}</a>
-                            <Divider type="vertical" />
                         </span>
                     }
                 },
@@ -78,7 +77,7 @@ class classroomManagement extends Component {
         return (
             <div>
                 <div>
-                    <h2>教室管理</h2>
+                <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>教室管理</h2>
                     <div>
                         <Button type="primary" onClick={this.showModal}>
                             + 添加教室
@@ -98,7 +97,9 @@ class classroomManagement extends Component {
                             }}></Input>
                         </Modal>
                     </div>
-                    <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+                    <div className="el_conent">
+                        <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+                    </div>
                 </div>
             </div>
         );
