@@ -8,7 +8,7 @@ class viewDetail extends Component {
         let {stanList} = this.state
         return (
             <div className="content">
-                <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>试卷详情</h2>
+                <h2 style={{ marginTop: "10px" }}>试卷详情</h2>
                 <div className="el_conent">{
                     stanList && stanList.map((el,i)=>{
                         return <div key={i} style={{border:'1px solid #000',margin:'30px 0',padding:'20px',boxSizing:'border-box'}}>

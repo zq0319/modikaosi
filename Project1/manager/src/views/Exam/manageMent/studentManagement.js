@@ -80,9 +80,9 @@ class studentManagement extends Component {
         
         let { data, arr, list ,columns} = this.state
         return (
-            <div>
-                <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>学生管理</h2>
-                <div className="nav">
+            <div className="content">
+                <h2 style={{ marginTop: "10px" }}>学生管理</h2>
+                <div className="nav el_conent" style={{height:'auto'}}>
                     <Input placeholder="输入学生姓名"></Input>
                     <Select labelInValue defaultValue={{ key: '请选择教室号' }} style={{ width: 120 }} onChange={handleChange} className="select">
                         {

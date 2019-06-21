@@ -55,7 +55,7 @@ class viewDetail extends Component {
         let {columns,stanList} = this.state
         return (
             <div className="content">
-                <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>待批班级</h2>
+                <h2 style={{marginTop: "10px" }}>待批班级</h2>
                 <div className="el_conent">
                     <Table columns={columns} dataSource={stanList} />
                 </div>

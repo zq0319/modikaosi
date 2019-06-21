@@ -23,6 +23,8 @@ export default {
 
         if(payload){
             let data1 = yield call(studentdetail,payload)
+                yield put({type:'studentdetail',payload:data1.exam})
+
         }
       },
     },
@@ -35,6 +37,9 @@ export default {
         student(state, action) {
             return { ...state,studt:action.payload};
         },
+        studentdetail(state, action) {
+          return { ...state,studentdetail:action.payload};
+      },
     },
   
   };

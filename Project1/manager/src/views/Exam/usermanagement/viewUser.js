@@ -107,7 +107,7 @@ class componentName extends Component {
     let {index,userList,identityList,api_authorityList,identity_apiList,view_authorityList,authorityList} = this.state
     return (
       <div className="content">
-        <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>用户展示</h2>
+        <h2 style={{marginTop: "10px" }}>用户展示</h2>
         <div className="contnet-el">
         <Tabs onChange={this.callback} type="card">
           <TabPane tab="用户管理" key="1">

@@ -86,7 +86,7 @@ class addUser extends Component {
         console.log(examList)
         return (
             <div className="content">
-                <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>试卷列表</h2>
+                <h2 style={{marginTop: "10px" }}>试卷列表</h2>
                 <div className="conent_els">
                      <div>
                      <span>状态:</span>

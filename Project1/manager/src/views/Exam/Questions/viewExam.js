@@ -20,7 +20,7 @@ const { Option } = Select;
         let {questions} = this.state;
         return (
             <div className="content">
-                <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>查看试题</h2>
+                <h2 style={{marginTop: "10px" }}>查看试题</h2>
                 <div className="el_conent">
                     <div>
                         <span>课程类型：</span>
@@ -59,6 +59,7 @@ const { Option } = Select;
                 </div>
                 <div className="el_conent">
                     <ViewComponent data={questions} fn={(e)=>{
+                        console.log(this)
                         this.props.history.push(`/questions/detail?id=${e}`)
                     }} fn1={(e)=>{
                         this.props.history.push(`/questions/add?id=${e}`)

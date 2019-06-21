@@ -35,6 +35,7 @@ class Addexam extends Component {
         }
     }
     componentWillReceiveProps (newProps) {
+        console.log(newProps)
         this.setState({
             detail: newProps.detail,
             subject: newProps.subject,
@@ -46,7 +47,7 @@ class Addexam extends Component {
         
         return (
             <div className="content">
-                <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>{str.questions_stem?'编辑试题':'添加试题'}</h2>
+                <h2 style={{ marginTop: "10px" }}>{str.questions_stem?'编辑试题':'添加试题'}</h2>
                 <div className="el_conent">
                     <p>题目信息</p>
                     <p>题干</p>

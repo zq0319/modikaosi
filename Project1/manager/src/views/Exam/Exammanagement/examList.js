@@ -27,7 +27,7 @@ class addUser extends Component {
         let {detail,subject,examList} = this.state
         return (
             <div className="content">
-                <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>试卷列表</h2>
+                <h2 style={{marginTop: "10px" }}>试卷列表</h2>
                 <div className="conent_els">
                      <div>
                      <span>考试类型:</span>
@@ -74,7 +74,7 @@ class addUser extends Component {
                                     <li><div>考试班级</div><div >{el.grade_name.map((item,index)=>{
                                         return <span key={index}>{item}</span>
                                     })}</div></li>
-                                    <li>{new Date(el.user_name).toLocaleString()}</li>
+                                    <li>{el.user_name}</li>
                                     <li>{el.start_time}</li>
                                     <li>{el.end_time}</li>
                                     <li><a href="javascript:;" onClick={this.topstype.bind(this,el.exam_exam_id)}>详情</a></li></ol></li>

@@ -9,6 +9,19 @@ export function login(params){
   })
 }
 
+// 获取用户信息
+export function getUserInfo(){
+  return request({
+    url: '/user/userInfo'
+  })
+}
+
+// 获取用户权限
+export function getViewAuthority(user_id){
+  return request({
+    url: '/user/new?user_id='+user_id
+  })
+}
 
 export function type() {
   return request({
@@ -140,6 +153,14 @@ export function adduser(params){
     data:params
   })
 }
+//更新用户
+export function updateuser(params){
+  return request({
+    url: `/user/user`,
+    method: 'POST',
+    data:params
+  })
+}
 
 //展示身份
 export function identityato(params){
@@ -159,7 +180,6 @@ export function edit(params){
 }
 //添加身份
 export function authorityApi(params){
-  console.log(params)
   return request({
     params:{
       api_authority_text:params.api_authority_text,
@@ -178,7 +198,13 @@ export function usernew(params){
     method: 'GET'
   })
 }
-
+//添加视图接口权限
+export function authoritys(params){
+  return request({
+    url: `/user/authorityView/edit?view_authority_text=${params.view_authority_text}&view_id=${params.view_id}`,
+    method: 'GET'
+  })
+}
 //添加视图权限
 export function authority(params){
   return request({
@@ -186,7 +212,22 @@ export function authority(params){
     method: 'GET'
   })
 }
-
+//给身份设置api接口权限
+export function tityApi(params){
+  return request({
+    url: `/user/setIdentityApi`,
+    method: 'POST',
+    data:params
+  })
+}
+//给身份设置视图权限
+export function setiden(params){
+  return request({
+    url: `/user/setIdentityView`,
+    method: 'POST',
+    data:params
+  })
+}
 //创建试卷接口
 export function examfnDate(params){
   return request({
