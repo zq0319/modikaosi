@@ -1,3 +1,15 @@
+// import Addeaxm from '../views/Exam/Questions/addExam';
+// import Viewexam from '../views/Exam/Questions/viewExam';
+// import Typeexam from '../views/Exam/Questions/typeExam';
+// import Adduser from '../views/Exam/Usermanagement/addUser';
+// import Viewuser from '../views/Exam/Usermanagement/viewUser';
+// import Addexams from '../views/Exam/Exammanagement/addExams';
+// import Examlist from '../views/Exam/Exammanagement/examList';
+// import Class from '../views/Exam/manageMent/classManagement';
+// import Classrooms from '../views/Exam/manageMent/classroomManagement';
+// import Student from '../views/Exam/manageMent/studentManagement';
+// import Classroom from '../views/Exam/Markmanagement/classRoom';
+// import Detailexam from '../views/Exam/Questions/detailExam';
 import dynamic from 'dva/dynamic';
 //试题管理
 const Addeaxm = dynamic({
@@ -40,6 +52,7 @@ const Classroom = dynamic({
 const TabsFrom = dynamic({
   component: () => import('@/views/Exam/Markmanagement/tabform'),
 });
+
 
 
 export default {
@@ -123,7 +136,7 @@ export default {
       key: 11,
       path: '/questions/classroom',
       component: Classroom
-    }, {
+    },{
       name: 'router.markings.tabs',
       id: 'main-watchQuestions',
       key: 12,

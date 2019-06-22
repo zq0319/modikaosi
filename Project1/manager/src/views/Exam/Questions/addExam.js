@@ -35,7 +35,6 @@ class Addexam extends Component {
         }
     }
     componentWillReceiveProps (newProps) {
-        console.log(newProps)
         this.setState({
             detail: newProps.detail,
             subject: newProps.subject,
@@ -134,7 +133,7 @@ class Addexam extends Component {
             okType: 'danger',
             cancelText: '取消',
             onOk() {
-                // that.props.examType({
+                // that.props.addTop({
                 //     questions_type_id:select3,
                 //     questions_stem:value1,
                 //     subject_id:select2,
@@ -144,12 +143,12 @@ class Addexam extends Component {
                 //     title:value
                 // })
                 if(window.localStorage.getItem("str")){
-                    let {history:{push}} = that.props;
-                    push("/questions/view")
                     message.info("更新成功");
                 }else{
                     message.info("插入成功");
                 }
+                let {history:{push}} = that.props;
+                push("/questions/view")
                 window.localStorage.clear();
             },
             onCancel() {
@@ -167,6 +166,12 @@ const mapDisaptchToProps = dispatch => {
         examType(payload) {
             dispatch({
                 type: 'add/examTypes',
+                payload
+            })
+        },
+        addTop(payload) {
+            dispatch({
+                type: 'add/questionsAdd',
                 payload
             })
         }

@@ -18,10 +18,21 @@ const confirm = Modal.confirm;
 
 function SiderDemo(props) {
     const [count, setCount] = useState({});
+    const [arr, setArr] = useState([]);
     useEffect(() => {
-        let obj = window.localStorage.userInfo 
-        setCount(JSON.parse(obj))
-        console.log(count)
+        // let obj = window.localStorage.userInfo 
+        // setCount(JSON.parse(obj))
+        // console.log(count)
+        let arr = []
+        props.myView.forEach(el=>{
+            console.log(el)
+            el.children.forEach(item=>{
+                console.log(item.path)
+                arr.push(item.path)
+            })
+        })
+        arr.push("/questions")
+        setArr(arr)
     }, [props])
 
     if (!props.myView.length){
@@ -34,9 +45,9 @@ function SiderDemo(props) {
             confirm({
                 title: '你确定要退出当前的账号吗?',
                 content: 'Are you sure you want to log out of your current account?',
-                okText: 'Yes/我确定(•‾̑⌣‾̑•)✧',
+                okText: 'Yes/我确定ε(┬┬＿┬┬)3',
                 okType: 'danger',
-                cancelText: 'No/考虑一下ಥ_ಥ',
+                cancelText: 'No/考虑一下( ͡° ͜ʖ ͡°)✧',
                 onOk() {
                     removeToken()
                     push('/login')
@@ -48,7 +59,6 @@ function SiderDemo(props) {
             });
             
         }
-        
     };
 
     let onclick = ({ key }) => {
@@ -87,7 +97,7 @@ function SiderDemo(props) {
                     <span style={{ height: '100%', width: "150px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}>国际化</span>
                     </Dropdown>
                     <Dropdown overlay={menu}>
-                        <span style={{ height: '100%', width: "150px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="https://cdn.nlark.com/yuque/0/2019/png/anonymous/1547609339813-e4e49227-157c-452d-be7e-408ca8654ffe.png?x-oss-process=image/resize,m_fill,w_48,h_48/format,png" style={{ width: '40px', height: '40px', verticalAlign: 'middel', borderRadius: '50%', margin: '0 10px' }} alt="" />{count.data.user_name || 'chenmanjie'}</span>
+                        <span style={{ height: '100%', width: "150px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="https://cdn.nlark.com/yuque/0/2019/png/anonymous/1547609339813-e4e49227-157c-452d-be7e-408ca8654ffe.png?x-oss-process=image/resize,m_fill,w_48,h_48/format,png" style={{ width: '40px', height: '40px', verticalAlign: 'middel', borderRadius: '50%', margin: '0 10px' }} alt="" />chenmanjie</span>
                     </Dropdown>
                 </div>
                 
@@ -117,19 +127,22 @@ function SiderDemo(props) {
                         {/* <Route path="/questions/studentManagement" component={Student}></Route> */}
                         {/* <Redirect exact from="/" to="/questions/add"/> */}
                             {/* 渲染该用户拥有的路由 */}
-                            {props.myView.map((item)=>{
-                                if (item.children){
-                                    return item.children.map((value,key)=>{
+                            {/* 剩余路由去404 */}
+                            {
+                                props.myView.map((item)=>{
+                                    if (item.children){
+                                        return item.children.map((value,key)=>{
                                             return  <Route key={key} path={value.path} component={value.component}/>
                                         })
                                     }
                                 })
+                                
                             }
                             {/* 403路由 */}
                             {props.forbiddenView.map((item)=>{
                                 return <Redirect key={item} from={item} to="/403"/>
                             })}
-                            {/* 剩余路由去404 */}
+
                             {/* <Redirect to="/404"/> */}
                     </Switch>
                 </Content>

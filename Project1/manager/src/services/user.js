@@ -228,6 +228,7 @@ export function setiden(params){
     data:params
   })
 }
+
 //创建试卷接口
 export function examfnDate(params){
   return request({
@@ -255,6 +256,7 @@ export function putexam(params){
     }
   })
 }
+
 //获取试卷详情（教师端）接口
 export function examtrench(params){
   return request({
