@@ -19,4 +19,5 @@ export default{
 
     "router.markings":"MarkingManagement",
     "router.markings.class":"Awaitingapprovalclass",
+    "router.markings.tabs":"formmanagement",
 }

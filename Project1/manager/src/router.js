@@ -1,7 +1,9 @@
 import React from 'react';
-import { Router, Route, Switch ,Redirect} from 'dva/router';
+import { Router, Route, Switch,Redirect} from 'dva/router';
 import Login from './views/Login/index';
 import Home from './views/Exam/index';
+import Four from './views/Exam/Other/404'
+import Three from './views/Exam/Other/403'
 import { connect } from "dva"
 
 // 引入国际化
@@ -26,6 +28,8 @@ const RouterView = connect(mapStateToProps)(({locale, history})=>{
       <Switch>
         <Route path="/login" component={Login} />
           <Route path="/questions" component={Home} />
+          <Route path="/403" component={Three} />
+          <Route path="/404" component={Four} />
           <Redirect form="/" to="/questions"></Redirect>
         </Switch>
       </Router>

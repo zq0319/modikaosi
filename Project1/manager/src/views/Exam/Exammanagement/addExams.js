@@ -40,7 +40,7 @@ class addUser extends Component {
         let {number,select,select1} = this.state
         return (
             <div className="content">
-                <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>添加考试</h2>
+                <h2 style={{marginTop: "10px" }}>添加考试</h2>
                 <div className="el_conent">
                   <Form onSubmit={this.handleSubmit}>
                   <Form.Item label="试卷名称">

@@ -1,50 +1,57 @@
 /* eslint-disable array-callback-return */
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import './index.scss';
 import Example from '@/components/Example';
 import { Layout, Dropdown, Menu ,Modal} from 'antd';
 import {connect} from 'dva';
 import { Route, Switch , Redirect} from 'dva/router';
-import Addeaxm from "./Questions/addExam"
-// import Typeexam from "./Questions/typeExam"
-// import Viewexam from "./Questions/viewExam"
+
 import Detailexam from "./Questions/detailExam"
 import Marklist from './Markmanagement/markList'
 import Detailclass from './Markmanagement/detailClass'
 import Addevent from './Exammanagement/addEvent'
-import Three from './Other/403'
-import Four from './Other/404'
-// import Adduser from './Usermanagement/addUser'
-// import Viewuser from './Usermanagement/viewUser'
-// import Addexams from './Exammanagement/addExams'
-// import Examlist from './Exammanagement/examList'
-// import Viewdetail from './Exammanagement/viewDetail'
+import Viewdetail from './Exammanagement/viewDetail'
 
-// import Classroom from './Markmanagement/classRoom'
-
-// import Class from "./manageMent/classManagement"
-// import Classrooms from "./manageMent/classroomManagement"
-// import Student from "./manageMent/studentManagement"
 import {removeToken} from '@/utils/user'
 const { Header, Sider, Content } = Layout;
 const confirm = Modal.confirm;
 
 function SiderDemo(props) {
-    console.log('index props...', props)
+    // const [count, setCount] = useState({});
+    // const [arr, setArr] = useState([]);
     useEffect(() => {
-      
+        // let obj = window.localStorage.userInfo 
+        // setCount(JSON.parse(obj))
+        // console.log(count)
+        let arr = []
+        props.myView.forEach(el=>{
+            console.log(el)
+            el.children.forEach(item=>{
+                console.log(item.path)
+                arr.push(item.path)
+            })
+        })
+        arr.push("/questions")
+        // setArr(arr)
     }, [props])
+
     if (!props.myView.length){
         return null;
     }
+    
     let onClick = ({ key }) => {
         if(key*1 === 4){
             let {history:{push}} = props
             confirm({
                 title: '你确定要退出当前的账号吗?',
+                content: 'Are you sure you want to log out of your current account?',
+                okText: 'Yes/我确定ε(┬┬＿┬┬)3',
+                okType: 'danger',
+                cancelText: 'No/考虑一下( ͡° ͜ʖ ͡°)✧',
                 onOk() {
                     removeToken()
                     push('/login')
+                    window.localStorage.clear()
                 },
                 onCancel() {
                   console.log('Cancel');
@@ -52,11 +59,9 @@ function SiderDemo(props) {
             });
             
         }
-        
     };
 
     let onclick = ({ key }) => {
-        console.log(key)
         if(key*1 === 1*1){
             console.log(6666)
             props.changeLocal('zh')
@@ -92,7 +97,7 @@ function SiderDemo(props) {
                     <span style={{ height: '100%', width: "150px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}>国际化</span>
                     </Dropdown>
                     <Dropdown overlay={menu}>
-                        <span style={{ height: '100%', width: "150px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="https://cdn.nlark.com/yuque/0/2019/png/anonymous/1547609339813-e4e49227-157c-452d-be7e-408ca8654ffe.png?x-oss-process=image/resize,m_fill,w_48,h_48/format,png" style={{ width: '40px', height: '40px', verticalAlign: 'middel', borderRadius: '50%', margin: '0 10px' }} alt="" />渲染值</span>
+                        <span style={{ height: '100%', width: "150px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="https://cdn.nlark.com/yuque/0/2019/png/anonymous/1547609339813-e4e49227-157c-452d-be7e-408ca8654ffe.png?x-oss-process=image/resize,m_fill,w_48,h_48/format,png" style={{ width: '40px', height: '40px', verticalAlign: 'middel', borderRadius: '50%', margin: '0 10px' }} alt="" />chenmanjie</span>
                     </Dropdown>
                 </div>
                 
@@ -103,32 +108,18 @@ function SiderDemo(props) {
                 </Sider>
                 <Content>
                     <Switch>
-                        {/* <Route path="/questions/add" component={Addeaxm}></Route>
-                        <Route path="/questions/type" component={Typeexam}></Route>
-                        <Route path="/questions/view" component={Viewexam}></Route> */}
                         <Route path="/questions/detail" component={Detailexam}></Route>
                         <Route path="/questions/detailclass" component={Detailclass}></Route>
                         <Route path="/questions/addevent" component={Addevent}></Route>
                         <Route path="/questions/marklist" component={Marklist}></Route>
-                        <Route path="/403" component={Three}></Route>
-                        <Route path="/404" component={Four}></Route>
-                        {/* <Route path="/questions/adduser" component={Adduser}></Route> */}
-                        {/* <Route path="/questions/viewuser" component={Viewuser}></Route> */}
-                        {/* <Route path="/questions/addexams" component={Addexams}></Route> */}
-                        {/* <Route path="/questions/examlist" component={Examlist}></Route> */}
-
-                        {/* <Route path="/questions/viewDetail" component={Viewdetail}></Route> */}
-                        {/* <Route path="/questions/classroom" component={Classroom}></Route> */}
-                        {/* <Route path="/questions/classManagement" component={Class}></Route> */}
-                        {/* <Route path="/questions/classroomManagement" component={Classrooms}></Route> */}
-                        {/* <Route path="/questions/studentManagement" component={Student}></Route> */}
-                        {/* <Redirect exact from="/" to="/questions/add"/> */}
+                        <Route path="/questions/viewDetail" component={Viewdetail}></Route>
                             {/* 渲染该用户拥有的路由 */}
-                            {props.myView.map((item)=>{
-                                console.log(item)
-                                if (item.children){
-                                    return item.children.map((value,key)=>{
-                                        return  <Route key={key} path={value.path} component={value.component}/>
+
+                            {
+                                props.myView.map((item)=>{
+                                    if (item.children){
+                                        return item.children.map((value,key)=>{
+                                            return  <Route key={key} path={value.path} component={value.component}/>
                                         })
                                     }
                                 })
@@ -158,6 +149,12 @@ const mapStateToProps = state=>{
       changeLocal: payload=>{
         dispatch({
           type: 'global/changeLocale',
+          payload
+        })
+      },
+      userInfos: payload=>{
+        dispatch({
+          type: 'user/getUserInfo',
           payload
         })
       }

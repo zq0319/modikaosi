@@ -55,10 +55,14 @@ export default {
             if (data.code === 1){
                 setToken(data.token);
             }
+            // 2.获取用户信息
+            let userInfo = yield call(getUserInfo);
+            // console.log('userInfo...', userInfo);
+            window.localStorage.userInfo = JSON.stringify(userInfo)
             yield put({
                 type: 'save',
                 payload: data.code === 1?1:-1
-              })
+            })
         },
         *type({payload},{ call, put }) {
           let exo = yield call(type)
@@ -84,7 +88,7 @@ export default {
    
           // 2.获取用户信息
           let userInfo = yield call(getUserInfo);
-         //  console.log('userInfo...', userInfo);
+          // console.log('userInfo...', userInfo);
           yield put({
             type: 'updateUserInfo',
             payload: userInfo.data

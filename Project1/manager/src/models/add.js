@@ -29,17 +29,13 @@ export default {
                     yield put({type:'condition',payload:data3.data})
                 }
                 if(payload.user_id){
-                    let data4 = yield call(questionsAdd,payload);
                     let data5 = yield call(update,payload);
-
                     console.log(data5)
-                    yield put({type:'questionsAdd',payload:data4})
                 }
                 if(payload.subject_id){
                     let date = yield call(examfnDate,payload);
                     yield put({type:'examfnDate',payload:date})
                 }
-                
             }
             let studentList = yield call(examStudentList,payload);
                 console.log(studentList)
@@ -49,6 +45,12 @@ export default {
             yield put({type:'questions',payload:data2.data})
             yield put({type:'studentList',payload:studentList.exam})
         },
+        *questionsAdd({payload}, { call, put}){
+            let data4 = yield call(questionsAdd,payload);
+            console.log(data4)
+            yield put({type:'questionsAdd',payload:data4})
+        },
+
         *putarr({payload}, { call, put}){
             let data = yield call(putexam,payload);
             console.log(data)

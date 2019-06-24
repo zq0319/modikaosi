@@ -13,7 +13,7 @@ export default class componentName extends Component {
     render() {
         let { str } = this.state;
         return (
-            <div className="content"><h2 style={{ padding: '20px 0px', marginTop: "10px" }}>试题详情</h2>
+            <div className="content"><h2 style={{marginTop: "10px" }}>试题详情</h2>
                 <div className="ant-layout-content" style={{ background: 'rgb(255, 255, 255)', padding: '24px', margin: '0px 0px 20px', borderRadius: '10px', flex: '1 1 0%' }}>
                     <div style={{ marginBottom: '20px' }}>
                         <span>出题人：{str.user_name}</span>

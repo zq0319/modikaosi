@@ -83,12 +83,12 @@ class classManagement extends Component {
         })
     }
     render() {
-        let {arr,columns,name,data,list,select1,select2} = this.state
+        let {arr,columns,name,data,list} = this.state
         return (
-            <div className="arrrrr">
-               <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>班级管理</h2>
+            <div className="arrrrr content">
+               <h2 style={{ marginTop: "10px" }}>班级管理</h2>
                 <div>
-                    <Button type="primary" onClick={this.showModal}>
+                    <Button type="primary" onClick={this.showModal} style={{margin:'0  0 20px 0'}}>
                         + 添加班级
                     </Button>
                     <Modal

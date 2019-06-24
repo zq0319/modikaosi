@@ -19,5 +19,6 @@ export default{
 
     "router.markings":"阅卷管理",
     "router.markings.class":"阅卷管理",
+    "router.markings.tabs":"表格管理",
 
 }

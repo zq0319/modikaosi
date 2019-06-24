@@ -76,11 +76,11 @@ class classroomManagement extends Component {
     render() {
         let { data, columns, name } = this.state
         return (
-            <div>
+            <div className="content">
                 <div>
-                <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>教室管理</h2>
+                <h2 style={{marginTop: "10px" }}>教室管理</h2>
                     <div>
-                        <Button type="primary" onClick={this.showModal}>
+                        <Button type="primary" onClick={this.showModal} style={{margin:'0  0 20px 0'}}>
                             + 添加教室
                         </Button>
                         <Modal

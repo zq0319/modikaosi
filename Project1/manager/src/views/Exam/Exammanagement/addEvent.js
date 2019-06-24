@@ -30,7 +30,7 @@ class addUser extends Component {
         let {arr} = this.state;
         return (
             <div className="content">
-                <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>添加考试</h2>
+                <h2 style={{marginTop: "10px" }}>添加考试</h2>
                 <div className="el_conent">
                     <Button onClick={this.showDrawer}>添加新题</Button>
                     <Drawer

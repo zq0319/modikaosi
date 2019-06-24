@@ -76,7 +76,7 @@ class Typeexam extends Component {
         let {arr} = this.state;
         return (
             <div className="content">
-                <h2 style={{ padding: '20px 0px', marginTop: "10px" }}>考试分类</h2>
+                <h2 style={{marginTop: "10px" }}>考试分类</h2>
                 <div className="el_conent">
                     <Button type="primary" onClick={this.showModal}>
                         + 添加类型

@@ -22,22 +22,25 @@ class Example extends Component {
       <div className="routerA">
         <Sider>
           <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline"
-    style={{ height: '100%', borderRight: 0 }}>
-            {this.props.myView.map((item, index)=>{
-      return <SubMenu key={item.name} title={
-        <span>
-           <Icon type="user" />
-            {this.props.intl.formatMessage({id: item.name})}
-        </span>
-      }>{
-        item.children.map((value, key)=>{
-          return <Menu.Item key={value.key}>
-            <Link to={value.path}>{this.props.intl.formatMessage({id: value.name})}</Link>
-          </Menu.Item>
-        })
-      }
-      </SubMenu>
-    })}
+              style={{ height: '100%', borderRight: 0 }}>
+                {
+                  this.props.myView.map((item, index)=>{
+                    return <SubMenu key={item.name} title={
+                      <span>
+                        <Icon type="user" />
+                          {this.props.intl.formatMessage({id: item.name})}
+                      </span>
+                    }>
+                    {
+                      item.children.map((value, key)=>{
+                        return <Menu.Item key={value.key}>
+                          <Link to={value.path}>{this.props.intl.formatMessage({id: value.name})}</Link>
+                        </Menu.Item>
+                      })
+                    } 
+                    </SubMenu>
+                })
+              }
           </Menu>
         </Sider>
       </div>
