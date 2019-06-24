@@ -14,9 +14,6 @@ class Example extends Component {
     console.log(collapsed);
     this.setState({ collapsed });
   };
-  componentDidMount(){
-    console.log(this.props.intl);
-  }
   render() {
     return (
       <div className="routerA">

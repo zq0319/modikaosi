@@ -72,7 +72,7 @@ class addUser extends Component {
                                     }
                                 </Select>
                                 <Button type="primary" onClick={this.btn.bind(this)}>添加</Button>
-                                <Button>重置</Button>
+                                <Button onClick={this.chongzhi.bind(this)}>重置</Button>
                             </TabPane>
                             <TabPane tab="更新用户" key="2" className="tabpane">
                                 <Select className="select" labelInValue defaultValue={{ key: '选择身份ID' }} style={{ width: 120 }} onChange={this.handleChange2.bind(this)}>
@@ -94,7 +94,7 @@ class addUser extends Component {
                                     <Option value="lucy">Lucy (101)</Option>
                                 </Select>
                                 <Button type="primary" type="primary" onClick={this.btn3.bind(this)}>添加</Button>
-                                <Button>重置</Button>
+                                <Button onClick={this.chongzhi.bind(this)}>重置</Button>
                             </TabPane>
                         </Tabs>
                     </div>
@@ -109,7 +109,7 @@ class addUser extends Component {
                             })
                         }}></Input>
                         <Button type="primary" onClick={this.btn1.bind(this)}>添加</Button>
-                        <Button>重置</Button>
+                        <Button onClick={this.chongzhi.bind(this)}>重置</Button>
                     </div>
                 </div>
                 <div className="box_list">
@@ -131,7 +131,7 @@ class addUser extends Component {
                             })
                         }}></Input>
                         <Button type="primary" onClick={this.btn2.bind(this)}>添加</Button>
-                        <Button>重置</Button>
+                        <Button onClick={this.chongzhi.bind(this)}>重置</Button>
                     </div>
 
                 </div>
@@ -146,7 +146,7 @@ class addUser extends Component {
                             }
                         </Select>
                         <Button type="primary" onClick={this.btn4.bind(this)}>添加</Button>
-                        <Button>重置</Button>
+                        <Button onClick={this.chongzhi.bind(this)}>重置</Button>
                     </div>
 
                 </div>
@@ -168,7 +168,7 @@ class addUser extends Component {
                             }
                         </Select>
                         <Button type="primary" onClick={this.btn5.bind(this)}>添加</Button>
-                        <Button>重置</Button>
+                        <Button onClick={this.chongzhi.bind(this)}>重置</Button>
                     </div>
                 </div>
                 <div className="box_list">
@@ -189,7 +189,7 @@ class addUser extends Component {
                             }
                         </Select>
                         <Button type="primary" onClick={this.btn6.bind(this)}>添加</Button>
-                        <Button>重置</Button>
+                        <Button onClick={this.chongzhi.bind(this)}>重置</Button>
                     </div>
                 </div>
             </div>
@@ -287,6 +287,26 @@ class addUser extends Component {
             identity_id: select3,
             view_authority_id: select4
         })
+    }
+    chongzhi = () =>{
+        let {name,pwd,names,pwds,select1,select2,select3,select4,Identity,apiname,apiurl,apifangfa,classification,labels} = this.state;
+        this.setState({
+            name: '',
+            pwd: '',
+            names: '',
+            pwds: '',
+            select1: '',
+            select2: '',
+            select3: '',
+            select4: '',
+            Identity: '',
+            apiname: '',
+            apiurl: '',
+            apifangfa: '',
+            classification:'',
+            labels:''
+        })
+
     }
 }
 
