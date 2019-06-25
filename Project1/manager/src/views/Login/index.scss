@@ -10,12 +10,13 @@
 .box{
   width: 100%;
   height: 100%;
-  background: #000080;
+  background:url("../../assets//17056.jpg");
+  background-size: 100%
 }
 .login{
   width: 400px;
   height: 296px;
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, .5);
   position: absolute;
   top: 25%;
   right: 15%;
@@ -28,7 +29,7 @@
   margin-top: 40px;
 }
 .btn{
-  width: 100%;
+  width: 90%;
   margin-top: 20px;
 }
 .pwd{

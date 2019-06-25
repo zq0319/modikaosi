@@ -1,49 +1,24 @@
 import React, { Component } from 'react';
-import { Modal, Button, Input, Table } from 'antd';
+import { Modal, Button, Input, Table ,message} from 'antd';
+import { connect } from 'dva';
 const columns = [
     {
-        title: 'Name',
-        dataIndex: 'name',
+        title: '类型ID',
+        dataIndex: 'questions_type_id',
         render: text => <a href="javascript:;">{text}</a>,
     },
     {
-        title: 'Age',
-        dataIndex: 'age',
+        title: '类型名称',
+        dataIndex: 'questions_type_text',
     },
     {
-        title: 'Address',
-        dataIndex: 'address',
-    },
-];
-const data = [
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-    },
-    {
-        key: '4',
-        name: 'Disabled User',
-        age: 99,
-        address: 'Sidney No. 1 Lake Park',
-    },
+        title: '操作',
+        dataIndex: 'questions_type_sort',
+    }
 ];
 const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
-        console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+        // console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
     },
     getCheckboxProps: record => ({
         disabled: record.name === 'Disabled User', // Column configuration not to be checked
@@ -53,32 +28,56 @@ const rowSelection = {
 class Typeexam extends Component {
 
     state = { visible: false };
-
     showModal = () => {
         this.setState({
             visible: true,
         });
     };
 
-    handleOk = e => {
-        console.log(e);
-        this.setState({
-            visible: false,
-        });
-    };
-
     handleCancel = e => {
-        console.log(e);
         this.setState({
             visible: false,
         });
     };
 
+    componentDidMount() {
+        this.props.type()
+    }
+    state={
+        arr:[],
+        value:''
+    }
+    handleOk = e => {
+        let {arr} = this.state;
+        this.props.type({
+            text:this.state.value,
+            sort:arr.length+1
+        })
+        message.info('数据插入成功');
+        this.setState({
+            visible: false,
+        });
+    };
+
+    componentWillReceiveProps(newProps){
+        this.setState({
+            arr:newProps.exo.data
+        })
+        
+        if(newProps.addCode){
+            if(newProps.addCode.code*1===1*1 && newProps.addCode){
+                this.setState({
+                    value:''
+                })
+            }
+        }
+    }
     render() {
+        let {arr} = this.state;
         return (
-            <div>
-                <h2>考试分类</h2>
-                <div>
+            <div className="content">
+                <h2 style={{marginTop: "10px" }}>考试分类</h2>
+                <div className="el_conent">
                     <Button type="primary" onClick={this.showModal}>
                         + 添加类型
                     </Button>
@@ -87,13 +86,45 @@ class Typeexam extends Component {
                         visible={this.state.visible}
                         onOk={this.handleOk}
                         onCancel={this.handleCancel}>
-                        <Input placeholder="请输入类型名称"></Input>
+                        <Input placeholder="请输入类型名称" value={this.state.value} onChange={(e)=>{
+                            this.setState({
+                                value:e.target.value
+                            })
+                        }}></Input>
                     </Modal>
-                    <Table rowSelection={rowSelection} columns={columns} dataSource={data} />,
+                    <Table rowSelection={rowSelection} columns={columns} dataSource={arr}/>
                 </div>
             </div>
         );
     }
 }
 
-export default Typeexam;
+
+// props的类型检查
+Typeexam.propTypes = {
+
+}
+// props的默认值
+Typeexam.defaultProps = {
+
+}
+
+const mapStateToProps = state => {
+    return {
+        ...state.user
+    }
+}
+
+const mapDisaptchToProps = dispatch => {
+    return {
+        type(payload) {
+            dispatch({
+                type: 'user/type',
+                payload
+            })
+        },
+        
+    }
+}
+
+export default connect(mapStateToProps, mapDisaptchToProps)(Typeexam)

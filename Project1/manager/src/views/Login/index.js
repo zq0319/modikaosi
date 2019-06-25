@@ -5,7 +5,6 @@ import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 import styles from './index.scss';
 
 function IndexPage(props){
-  console.log(props)
   // 判断是否登陆
   useEffect(()=>{
     
@@ -14,10 +13,8 @@ function IndexPage(props){
       message.success('登陆成功');
       // 2.存储cookie
       // 3.跳转主页面
-      console.log('props.history', props.history);
       let pathName = decodeURIComponent(props.history.location.search.split('=')[1]);
-      console.log(pathName)
-      props.history.replace(pathName);
+      props.history.replace(pathName || '/');
     }else if(props.detail === -1){
       // 登陆失败
       message.error('用户名或密码错误')

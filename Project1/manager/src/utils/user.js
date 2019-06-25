@@ -12,6 +12,6 @@ export function setToken(value){
 }
 
 //删除cookie
-export function removeToken(value){
-    return Cookie.set(key)
+export function removeToken(){
+    return Cookie.remove(key)
 }
