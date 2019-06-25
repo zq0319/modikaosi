@@ -1,18 +1,16 @@
 /* eslint-disable array-callback-return */
 import React, { useEffect,useState } from 'react';
-import './index.scss';
 import Example from '@/components/Example';
 import { Layout, Dropdown, Menu ,Modal} from 'antd';
 import {connect} from 'dva';
 import { Route, Switch , Redirect} from 'dva/router';
-
 import Detailexam from "./Questions/detailExam"
 import Marklist from './Markmanagement/markList'
 import Detailclass from './Markmanagement/detailClass'
 import Addevent from './Exammanagement/addEvent'
 import Viewdetail from './Exammanagement/viewDetail'
-
 import {removeToken} from '@/utils/user'
+import './index.scss';
 const { Header, Sider, Content } = Layout;
 const confirm = Modal.confirm;
 
@@ -25,9 +23,7 @@ function SiderDemo(props) {
         // console.log(count)
         let arr = []
         props.myView.forEach(el=>{
-            console.log(el)
             el.children.forEach(item=>{
-                console.log(item.path)
                 arr.push(item.path)
             })
         })
@@ -63,7 +59,6 @@ function SiderDemo(props) {
 
     let onclick = ({ key }) => {
         if(key*1 === 1*1){
-            console.log(6666)
             props.changeLocal('zh')
         }else{
             props.changeLocal('en')
@@ -72,7 +67,7 @@ function SiderDemo(props) {
 
     const menu = (
         <Menu onClick={onClick}>
-            <Menu.Item key="1">个人中心</Menu.Item>
+            <Menu.Item key="1" >个人中心</Menu.Item>
             <Menu.Item key="2">我的班级</Menu.Item>
             <Menu.Divider />
             <Menu.Item key="3">设置</Menu.Item>
@@ -97,7 +92,7 @@ function SiderDemo(props) {
                     <span style={{ height: '100%', width: "150px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}>国际化</span>
                     </Dropdown>
                     <Dropdown overlay={menu}>
-                        <span style={{ height: '100%', width: "150px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="https://cdn.nlark.com/yuque/0/2019/png/anonymous/1547609339813-e4e49227-157c-452d-be7e-408ca8654ffe.png?x-oss-process=image/resize,m_fill,w_48,h_48/format,png" style={{ width: '40px', height: '40px', verticalAlign: 'middel', borderRadius: '50%', margin: '0 10px' }} alt="" />chenmanjie</span>
+                        <span style={{ height: '100%', width: "150px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="http://123.206.55.50:11000/static/dcc4c6f4d029b4ecfe797f04.jpg" style={{ width: '40px', height: '40px', verticalAlign: 'middel', borderRadius: '50%', margin: '0 10px' }} alt="" />chenmanjie</span>
                     </Dropdown>
                 </div>
                 

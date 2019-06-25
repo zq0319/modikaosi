@@ -5,35 +5,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>上传图片</title>
+    <title>文件上传</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        canvas {
+            width: 512px;
+            height: 288px;
+        }
+    </style>
 </head>
 
 <body>
+    <canvas id="canvas"></canvas>
     <input type="file">
     <img src="" alt="">
-</body>
-<script>
-    var ele = document.querySelector('input');
-    ele.onchange = function (e) {
-        console.log('e...', e);
-        let files = e.target.files;
-        // 创建一个formData
-        let form = new FormData();
-        for (let i = 0, len = files.length; i < len; i++) {
-            console.log(files[i].name);
-            form.append(files[i].name, files[i]);
-        }
+    <script>
+        var cnavas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d');
+        // 1.设置画布的宽高
+        canvas.width = 512;
+        canvas.height = 288;
+        // 2.绘制背景图
+        var img = new Image();
         axios({
             method: 'post',
-            url: 'http://123.206.55.50:11000/upload',
-            data: form
+            url: 'http://123.206.55.50:11000/tobase64',
+            data: { url: 'https://i03piccdn.sogoucdn.com/eb5abb9eb25f7a37' }
         }).then(body => {
             console.log('body...', body);
+            img.src = body.data.data.base64;
         }).catch(e => {
             console.log('e..', e);
         })
-    }
-</script>
+        img.onload = function () {
+            ctx.drawImage(img, 0, 0, 1280, 720, 0, 0, 512, 288);
+        }
+        // 3.监听图片上传
+        var ele = document.querySelector('input');
+        ele.onchange = function (e) {
+            let files = e.target.files;
+            // 创建一个fileReader       
+            for (let i = 0, len = files.length; i < len; i++) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    // console.log('result...', this.result);
+                    // 4.绘制上传的图片
+                    var avatar = new Image();
+                    avatar.src = this.result;
+                    avatar.onload = function () {
+                        ctx.drawImage(avatar, 0, 0, 300, 300, 385, 88, 30, 30);
+                        // 5.合成一张图片
+                        var result = canvas.toDataURL('jpg', 0.8);
+                        console.log('result...', result);
+                    }
+                }
+                reader.readAsDataURL(files[i]);
+            }
+        }
+    </script>
+</body>
 
 </html>
