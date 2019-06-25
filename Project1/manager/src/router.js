@@ -26,11 +26,12 @@ const RouterView = connect(mapStateToProps)(({locale, history})=>{
   return <IntlProvider locale={locale} messages={localMap[locale]}>
     <Router history={history}>
       <Switch>
+      
         <Route path="/login" component={Login} />
           <Route path="/questions" component={Home} />
+          <Redirect form="/" to="/questions"></Redirect>
           <Route path="/403" component={Three} />
           <Route path="/404" component={Four} />
-          <Redirect form="/" to="/questions"></Redirect>
         </Switch>
       </Router>
   </IntlProvider>

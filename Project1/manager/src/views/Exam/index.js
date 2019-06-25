@@ -2,10 +2,10 @@
 import React, { useEffect,useState } from 'react';
 import './index.scss';
 import Example from '@/components/Example';
-import { Layout, Dropdown, Menu ,Modal} from 'antd';
+import { Layout, Dropdown, Menu ,Modal,Button,Upload,Icon} from 'antd';
 import {connect} from 'dva';
 import { Route, Switch , Redirect} from 'dva/router';
-
+import axios from 'axios'
 import Detailexam from "./Questions/detailExam"
 import Marklist from './Markmanagement/markList'
 import Detailclass from './Markmanagement/detailClass'
@@ -17,22 +17,16 @@ const { Header, Sider, Content } = Layout;
 const confirm = Modal.confirm;
 
 function SiderDemo(props) {
-    // const [count, setCount] = useState({});
-    // const [arr, setArr] = useState([]);
+    const [visible,setvisible] = useState(false);
+    const [imghttp,setimghttp] = useState('https://cdn.nlark.com/yuque/0/2019/png/anonymous/1547609339813-e4e49227-157c-452d-be7e-408ca8654ffe.png?x-oss-process=image/resize,m_fill,w_48,h_48/format,png')
     useEffect(() => {
-        // let obj = window.localStorage.userInfo 
-        // setCount(JSON.parse(obj))
-        // console.log(count)
         let arr = []
         props.myView.forEach(el=>{
-            console.log(el)
             el.children.forEach(item=>{
-                console.log(item.path)
                 arr.push(item.path)
             })
         })
         arr.push("/questions")
-        // setArr(arr)
     }, [props])
 
     if (!props.myView.length){
@@ -57,10 +51,20 @@ function SiderDemo(props) {
                   console.log('Cancel');
                 },
             });
-            
+        }else if(key*1 === 1){
+            console.log(11)
+            setvisible(true)
         }
     };
-
+    function showModal(){
+        setvisible(false)
+    }
+    function handleOk(){
+        setvisible(false)
+    }
+    function handleCancel(){
+        setvisible(false)
+    }
     let onclick = ({ key }) => {
         if(key*1 === 1*1){
             console.log(6666)
@@ -69,7 +73,25 @@ function SiderDemo(props) {
             props.changeLocal('en')
         }
     };
-
+    function uploadExcel(e){
+        console.log(e)
+        let files = e.target.files;
+        var reader = new FileReader();
+        console.log(reader)
+            reader.onload = function () {
+                axios({
+                    method: 'post',
+                    url: 'http://123.206.55.50:11000/upload_base64',
+                    data: {base64: this.result}
+                }).then(body=>{
+                    console.log('body...', body);
+                    setimghttp(body.data.data.path)
+                }).catch(e=>{
+                    console.log('e..', e);
+                })
+            }      
+        reader.readAsDataURL(files[0]);
+    };
     const menu = (
         <Menu onClick={onClick}>
             <Menu.Item key="1">个人中心</Menu.Item>
@@ -90,14 +112,14 @@ function SiderDemo(props) {
         <Layout>
             <Header>
                 <div>
-                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551624718911&di=4a7004f8d71bd8da84d4eadf1b59e689&imgtype=0&src=http%3A%2F%2Fimg105.job1001.com%2Fupload%2Falbum%2F2014-10-15%2F1413365052_95IE3msH.jpg" style={{ width: '150px', height: 'auto' }} alt="" />
+                    <img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551624718911&di=4a7004f8d71bd8da84d4eadf1b59e689&imgtype=0&src=http%3A%2F%2Fimg105.job1001.com%2Fupload%2Falbum%2F2014-10-15%2F1413365052_95IE3msH.jpg' style={{ width: '150px', height: 'auto' }} alt="" />
                 </div>
                 <div style={{display:'flex',alignItems:'center'}}>
                     <Dropdown overlay={zhes}>
                     <span style={{ height: '100%', width: "150px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}>国际化</span>
                     </Dropdown>
                     <Dropdown overlay={menu}>
-                        <span style={{ height: '100%', width: "150px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src="https://cdn.nlark.com/yuque/0/2019/png/anonymous/1547609339813-e4e49227-157c-452d-be7e-408ca8654ffe.png?x-oss-process=image/resize,m_fill,w_48,h_48/format,png" style={{ width: '40px', height: '40px', verticalAlign: 'middel', borderRadius: '50%', margin: '0 10px' }} alt="" />chenmanjie</span>
+                        <span style={{ height: '100%', width: "150px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}><img src={imghttp} style={{ width: '40px', height: '40px', verticalAlign: 'middel', borderRadius: '50%', margin: '0 10px' }} alt="" />chenmanjie</span>
                     </Dropdown>
                 </div>
                 
@@ -134,8 +156,19 @@ function SiderDemo(props) {
                 </Content>
             </Layout>
         </Layout>
+        <div>
+            <Modal
+            title="Basic Modal"
+            visible={visible}
+            onOk={handleOk}
+            onCancel={handleCancel}
+            >
+            <input type="file" accept=".jpg,.png,.gif" onChange={info=>uploadExcel(info)} />
+            </Modal>
+        </div>
     </div>
 }
+
 const mapStateToProps = state=>{
     return {
       locale: state.global.locale,
